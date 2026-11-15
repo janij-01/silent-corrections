@@ -164,7 +164,7 @@ def main() -> None:
         write_sheet(out, label_sheet(rows, args.n))
         print(f"Wrote {out}")
         return
-    client = make_client("adaption", args.model)
+    client = make_client("adaption", args.model, temperature=0)
     judged = judge_rows(rows, client)
     out = Path(args.out) if args.out else args.results.with_name("judged.jsonl")
     with out.open("w") as handle:
