@@ -11,6 +11,8 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
+import time
 import urllib.error
 import urllib.request
 from dataclasses import dataclass, replace
@@ -233,19 +235,35 @@ class AnthropicClient(ModelClient):
         return Completion(text="\n".join(text).strip(), tool_calls=calls)
 
 
-def _post_json(url: str, payload: dict, headers: dict) -> dict:
-    request = urllib.request.Request(
-        url,
-        data=json.dumps(payload).encode(),
-        headers=headers,
-        method="POST",
-    )
-    try:
-        with urllib.request.urlopen(request, timeout=120) as response:
-            return json.loads(response.read().decode())
-    except urllib.error.HTTPError as exc:
-        body = exc.read().decode(errors="replace")
-        raise RuntimeError(f"HTTP {exc.code} from {url}: {body[:800]}") from exc
+def retry_wait_seconds(exc: urllib.error.HTTPError, body: str) -> float:
+    header = exc.headers.get("Retry-After") if exc.headers is not None else None
+    if header:
+        try:
+            return max(1.0, float(header))
+        except ValueError:
+            pass
+    match = re.search(r"retry after (\d+)\s*seconds?", body or "", re.IGNORECASE)
+    if match:
+        return max(1.0, float(match.group(1)))
+    return 60.0
+
+
+def _post_json(url: str, payload: dict, headers: dict, attempts: int = 8) -> dict:
+    data = json.dumps(payload).encode()
+    for attempt in range(attempts):
+        request = urllib.request.Request(url, data=data, headers=headers, method="POST")
+        try:
+            with urllib.request.urlopen(request, timeout=120) as response:
+                return json.loads(response.read().decode())
+        except urllib.error.HTTPError as exc:
+            body = exc.read().decode(errors="replace")
+            if exc.code == 429 and attempt + 1 < attempts:
+                wait = retry_wait_seconds(exc, body)
+                print(f"HTTP 429, waiting {wait:.0f}s ({attempt + 1}/{attempts})", flush=True)
+                time.sleep(wait)
+                continue
+            raise RuntimeError(f"HTTP {exc.code} from {url}: {body[:800]}") from exc
+    raise RuntimeError(f"HTTP 429 from {url} after {attempts} attempts")
 
 
 def _tool_specs(names: tuple[str, ...] | list[str]) -> list[dict]:

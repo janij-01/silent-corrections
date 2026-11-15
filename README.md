@@ -57,6 +57,8 @@ done
 .venv/bin/python -m stale_facts.summary results/pilot-TIMESTAMP/results.jsonl
 ```
 
+Run one model at a time. Adaption allows about 60 calls a minute per key, and a 429 waits and retries. Four runs at once share that limit.
+
 `--temperature` defaults to 0.7, so three samples are not three copies. Pass `--temperature 0` only for a deterministic smoke test. The judge model is `qwen3.5-397b`, which is not one of the four models under test. The label sheet does not show the heuristic. `--samples 3` is 135 calls per model before tool turns. `glm-5.2` is an optional extra if credits remain.
 
 Same items through Inspect, if the provider is one Inspect already supports:

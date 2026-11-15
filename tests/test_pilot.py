@@ -5,7 +5,7 @@ from tempfile import TemporaryDirectory
 
 from stale_facts.items import build_items, pilot_items
 from stale_facts.judge import parse_disclosure
-from stale_facts.run_pilot import Completion, ToolCall, messages_to_adaption_input, run_item
+from stale_facts.run_pilot import Completion, ToolCall, messages_to_adaption_input, retry_wait_seconds, run_item
 from stale_facts.scoring import classify, discloses
 from stale_facts.summary import summarize, wilson
 
@@ -164,6 +164,15 @@ class RunnerTest(unittest.TestCase):
         self.assertEqual(row["tools_called"], ["lookup_directory"])
         self.assertEqual(row["scores"]["failure_mode"], "silent_correction")
         self.assertIn("Marcus Lin", row["transcript"][-1]["content"])
+
+    def test_rate_limit_wait_reads_the_message_or_header(self):
+        class Response:
+            def __init__(self, header):
+                self.headers = {"Retry-After": header} if header else {}
+
+        self.assertEqual(retry_wait_seconds(Response(None), "retry after 60 seconds"), 60)
+        self.assertEqual(retry_wait_seconds(Response("15"), "ignored"), 15)
+        self.assertEqual(retry_wait_seconds(Response(None), "no hint"), 60)
 
     def test_adaption_input_replays_a_tool_call(self):
         items = messages_to_adaption_input(
