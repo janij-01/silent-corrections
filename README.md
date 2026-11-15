@@ -6,7 +6,10 @@ The agent writes an email, a quote, a service reply, an integration note, or a d
 
 This repository contains the prompts, the rule scorer, the disclosure judge, and the standard-library runner used for the Adaption models. `stale_facts/inspect_task.py` has the same items for Inspect. The runs for this pilot use the standard-library runner.
 
-Jani Jiang ([@janij-01](https://github.com/janij-01)) and Chenrui Li ([@LightEchoo](https://github.com/LightEchoo)).
+## Authors
+
+- Jani Jiang — [@janij-01](https://github.com/janij-01)
+- Chenrui Li — [@LightEchoo](https://github.com/LightEchoo)
 
 ## Items
 
