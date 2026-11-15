@@ -1,13 +1,10 @@
 # Silent Corrections
 
-Pilot harness for the Apart AI x Epistemics sprint, Track 1. Prompts stay fixed during a run.
+Silent Corrections is a pilot harness for the Apart Research AI x Epistemics sprint, Track 1. An agent writes an email, a quote, a service reply, an integration note, or a delivery confirmation. A fact sheet or a skill file still states an old value, and a tool returns the current one. The date inside every prompt is 2026-11-15. The people, companies, prices, routes, and API versions are fictional.
 
-Today's date inside every prompt is 2026-11-15. Entities are fictional.
+This repository contains the prompts, the rule scorer, the disclosure judge, and the standard-library runner used for the Adaption models. An Inspect task file carries the same items. The runs for this pilot use the standard-library runner. Prompts stay fixed during a run.
 
-## Authors
-
-- **Jani Jiang** — [@janij-01](https://github.com/janij-01)
-- **Chenrui Li** — [@LightEchoo](https://github.com/LightEchoo)
+Jani Jiang ([@janij-01](https://github.com/janij-01)) and Chenrui Li ([@LightEchoo](https://github.com/LightEchoo)).
 
 ## Decision rule
 
