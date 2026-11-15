@@ -1,27 +1,21 @@
-# Silent Corrections pilot
+# Silent Corrections
 
-Frozen harness for the Apart AI x Epistemics sprint. Track 1. Two people, one pilot, no prompt edits during a run.
+Pilot harness for the Apart AI x Epistemics sprint, Track 1. Prompts stay fixed during a run.
 
 Today's date inside every prompt is 2026-11-15. Entities are fictional.
 
-## Who does what
+## Authors
 
-**Alex runs the Adaption models and the disclosure judge. He does not edit prompts during a run, and he does not write the report.**
+| Name | GitHub | Role |
+| --- | --- | --- |
+| Jani Jiang | [janij-01](https://github.com/janij-01) | Study design, items, human labels, and the report. |
+| Chenrui Li | [LightEchoo](https://github.com/LightEchoo) | Adaption runs and the disclosure judge. Reads the report before submission. |
 
-1. Pull this repo and dry-run. Confirm 45 prompts (M0: 10, M1 plain: 20, M1 nudge: 10, M3: 5).
-2. Smoke-test one model with `--limit 2`. If tool calls work, run the four models below at `--samples 3`.
-3. Send each `summary.md` and `results.jsonl`. Keep the exact model ids.
-4. Run the judge once per results file. It uses `qwen3.5-397b` at temperature 0.
-5. Do not start a `--hide-tool-dates` rerun unless Janie asks for it after the four runs.
+Jani Jiang is first author. Chenrui Li is second author. He does not edit prompts during a run, and he does not write the report. The recording and slides are optional.
 
-**Janie owns the claim, the human labels, and the report.**
+Chenrui Li pulls this repo, confirms the dry-run is 45 prompts (M0: 10, M1 plain: 20, M1 nudge: 10, M3: 5), smoke-tests one model with `--limit 2`, then runs the four models at `--samples 3`. He keeps the exact model ids and sends each `summary.md` and `results.jsonl`. The judge is `qwen3.5-397b` at temperature 0, once per results file. A `--hide-tool-dates` rerun waits until Jani Jiang asks for it after the four runs.
 
-1. While the runs are in flight, read arXiv:2610.30571 and arXiv:2611.09802.
-2. Hand-label the 50-row sheet Alex produces with `--sheet`. The heuristic and the judge are both checks, not the ground truth.
-3. Write the report. Alex reads it before submission.
-4. The recording and slides are optional. If time is short, skip both and keep everything in the report.
-
-If a third person joins, they verify citations and put the report into the template. They do not edit `items.py`.
+Jani Jiang reads arXiv:2610.30571 and arXiv:2611.09802, hand-labels the 50-row sheet from `--sheet`, and writes the report. The heuristic and the judge are checks, not the ground truth.
 
 ## Decision rule
 
