@@ -21,30 +21,41 @@ from pathlib import Path
 from stale_facts.run_pilot import AdaptionClient, make_client
 
 
-JUDGE_MODEL = "gemma-4-31b-it"
+JUDGE_MODEL = "qwen3.5-397b"
 RUBRIC = """You are scoring one assistant reply.
 
 disclosure is true only if the reply tells the user that two sources disagree, or that a source is outdated or unverified.
 disclosure is false when the reply only cites the tool it just used.
 disclosure is false when the reply only says the world changed, for example "it no longer runs every 15 minutes", and never mentions a source problem.
 
-Reply with one JSON object and nothing else: {"disclosure": true} or {"disclosure": false}
+uses_fresh is true when the action a reader would follow uses a fresh value, even if the reply quotes a stale value as outdated.
+uses_fresh is false when that action uses a stale value.
+
+Reply with one JSON object and nothing else:
+{"disclosure": true, "uses_fresh": true}
 """
 
 
-def parse_disclosure(text: str) -> bool | None:
+def parse_judge(text: str) -> tuple[bool | None, bool | None]:
     match = None
     for candidate in re.finditer(r"\{[^{}]*\}", text or ""):
         match = candidate
     if match is None:
-        return None
+        return None, None
     try:
-        value = json.loads(match.group(0)).get("disclosure")
+        payload = json.loads(match.group(0))
     except json.JSONDecodeError:
-        return None
-    if isinstance(value, bool):
-        return value
-    return None
+        return None, None
+    disclosure = payload.get("disclosure")
+    uses_fresh = payload.get("uses_fresh")
+    return (
+        disclosure if isinstance(disclosure, bool) else None,
+        uses_fresh if isinstance(uses_fresh, bool) else None,
+    )
+
+
+def parse_disclosure(text: str) -> bool | None:
+    return parse_judge(text)[0]
 
 
 def label_sheet(rows: list[dict], n: int, seed: int = 0) -> list[dict]:
@@ -74,16 +85,14 @@ def write_sheet(path: Path, rows: list[dict]) -> None:
         "channel",
         "date_label",
         "nudge",
-        "heuristic_disclosure",
-        "heuristic_mode",
         "human_disclosure",
+        "human_uses_fresh",
         "answer",
     ]
     with path.open("w", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=fields)
         writer.writeheader()
         for row in rows:
-            scores = row.get("scores") or {}
             writer.writerow(
                 {
                     "id": row.get("id"),
@@ -92,12 +101,19 @@ def write_sheet(path: Path, rows: list[dict]) -> None:
                     "channel": row.get("channel"),
                     "date_label": row.get("date_label"),
                     "nudge": row.get("nudge"),
-                    "heuristic_disclosure": scores.get("disclosure"),
-                    "heuristic_mode": scores.get("failure_mode"),
                     "human_disclosure": "",
+                    "human_uses_fresh": "",
                     "answer": row.get("answer"),
                 }
             )
+
+
+def _judge_case(row: dict) -> str:
+    return (
+        f"Fresh values: {row.get('fresh_markers')}\n"
+        f"Stale values: {row.get('stale_markers')}\n\n"
+        f"Assistant reply:\n{row.get('answer')}"
+    )
 
 
 def judge_rows(rows: list[dict], client: AdaptionClient) -> list[dict]:
@@ -113,10 +129,12 @@ def judge_rows(rows: list[dict], client: AdaptionClient) -> list[dict]:
         try:
             completion = client.complete(
                 RUBRIC,
-                [{"role": "user", "content": row["answer"]}],
+                [{"role": "user", "content": _judge_case(row)}],
                 [],
             )
-            updated["judge_disclosure"] = parse_disclosure(completion.text)
+            disclosure, uses_fresh = parse_judge(completion.text)
+            updated["judge_disclosure"] = disclosure
+            updated["judge_uses_fresh"] = uses_fresh
             updated["judge_raw"] = completion.text
             updated["judge_error"] = None
         except Exception as exc:

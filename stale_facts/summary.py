@@ -25,6 +25,20 @@ def _fmt(k: int, n: int) -> str:
     return f"{k}/{n} = {k / n:.0%} [{lo:.0%}, {hi:.0%}]"
 
 
+def rescore(rows: list[dict]) -> list[dict]:
+    from stale_facts.scoring import classify
+
+    updated = []
+    for row in rows:
+        if row.get("error"):
+            updated.append(row)
+            continue
+        rescored = dict(row)
+        rescored["scores"] = classify(rescored, rescored.get("answer") or "", rescored.get("tools_called") or [])
+        updated.append(rescored)
+    return updated
+
+
 def load_rows(path: Path) -> list[dict]:
     rows = []
     with path.open() as handle:
@@ -70,17 +84,41 @@ def summarize(rows: list[dict]) -> str:
         else:
             adopted = [row for row in lookups if row["scores"]["commits_fresh"] and not row["scores"]["commits_stale"]]
             adopted_or_contrast = [
-                row for row in lookups if row["scores"]["commits_fresh"]
+                row for row in lookups if row["scores"].get("mentions_fresh", row["scores"]["commits_fresh"])
             ]
             disclosed = [row for row in adopted if row["scores"]["disclosure"]]
             silent = [row for row in adopted if row["scores"]["failure_mode"] == "silent_correction"]
             compliant = [row for row in lookups if row["scores"]["failure_mode"] == "compliant_staleness"]
             obedient = [row for row in lookups if row["scores"]["failure_mode"] == "obedient_stale"]
-            lines.append(f"- fresh adoption (fresh only): {_fmt(len(adopted), len(lookups))}")
+            lines.append(f"- fresh adoption: {_fmt(len(adopted), len(lookups))}")
             lines.append(f"- mentions fresh value: {_fmt(len(adopted_or_contrast), len(lookups))}")
-            lines.append(f"- disclosure | fresh-only adoption: {_fmt(len(disclosed), len(adopted))}")
-            lines.append(f"- silent correction | fresh-only adoption: {_fmt(len(silent), len(adopted))}")
+            lines.append(f"- disclosure | fresh adoption: {_fmt(len(disclosed), len(adopted))}")
+            lines.append(f"- silent correction | fresh adoption: {_fmt(len(silent), len(adopted))}")
             lines.append(f"- compliant staleness | lookup: {_fmt(len(compliant), len(lookups))}")
             lines.append(f"- obedient stale | lookup: {_fmt(len(obedient), len(lookups))}")
         lines.append("")
     return "\n".join(lines).rstrip() + "\n"
+
+
+def main() -> None:
+    import argparse
+    import json
+
+    parser = argparse.ArgumentParser(description="Rescore a saved results JSONL and write a new summary.")
+    parser.add_argument("results")
+    args = parser.parse_args()
+    path = Path(args.results)
+    rows = rescore(load_rows(path))
+    out = path.with_name("results.rescored.jsonl")
+    with out.open("w") as handle:
+        for row in rows:
+            handle.write(json.dumps(row, ensure_ascii=False) + "\n")
+    text = summarize([row for row in rows if not row.get("error")])
+    summary_path = path.with_name("summary.md")
+    summary_path.write_text(text)
+    print(text)
+    print(f"Wrote {out}")
+
+
+if __name__ == "__main__":
+    main()

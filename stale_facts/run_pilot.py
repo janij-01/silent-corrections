@@ -49,15 +49,16 @@ class ModelClient:
 
 
 class OpenAIClient(ModelClient):
-    def __init__(self, model: str, api_key: str, base_url: str):
+    def __init__(self, model: str, api_key: str, base_url: str, temperature: float = 0.7):
         self.model = model
         self.api_key = api_key
         self.base_url = base_url.rstrip("/")
+        self.temperature = temperature
 
     def complete(self, system: str, messages: list[dict], tools: list[dict]) -> Completion:
         payload = {
             "model": self.model,
-            "temperature": 0,
+            "temperature": self.temperature,
             "messages": [{"role": "system", "content": system}, *messages],
             "tools": [
                 {
@@ -124,16 +125,17 @@ def messages_to_adaption_input(messages: list[dict]) -> list[dict]:
 class AdaptionClient(ModelClient):
     """Adaption Responses API. Reads ADAPTION_API_KEY. Does not use agentic memory."""
 
-    def __init__(self, model: str, api_key: str):
+    def __init__(self, model: str, api_key: str, temperature: float = 0.7):
         self.model = model
         self.api_key = api_key
+        self.temperature = temperature
 
     def complete(self, system: str, messages: list[dict], tools: list[dict]) -> Completion:
         payload = {
             "model": self.model,
             "instructions": system,
             "input": messages_to_adaption_input(messages),
-            "temperature": 0,
+            "temperature": self.temperature,
             "max_output_tokens": 1024,
             "agentic_memory": False,
             "store": False,
@@ -185,15 +187,16 @@ class AdaptionClient(ModelClient):
 
 
 class AnthropicClient(ModelClient):
-    def __init__(self, model: str, api_key: str):
+    def __init__(self, model: str, api_key: str, temperature: float = 0.7):
         self.model = model
         self.api_key = api_key
+        self.temperature = temperature
 
     def complete(self, system: str, messages: list[dict], tools: list[dict]) -> Completion:
         payload = {
             "model": self.model,
             "max_tokens": 1024,
-            "temperature": 0,
+            "temperature": self.temperature,
             "system": system,
             "tools": [
                 {
@@ -340,6 +343,7 @@ def run_item(client: ModelClient, item, provider: str, model: str, max_turns: in
         {
             "provider": provider,
             "model": model,
+            "temperature": getattr(client, "temperature", None),
             "answer": answer,
             "tools_called": called,
             "transcript": transcript,
@@ -374,23 +378,23 @@ def write_jsonl(path: Path, rows: list[dict]) -> None:
             handle.write(json.dumps(row, ensure_ascii=False) + "\n")
 
 
-def make_client(provider: str, model: str) -> ModelClient:
+def make_client(provider: str, model: str, temperature: float = 0.7) -> ModelClient:
     if provider == "openai":
         key = os.environ.get("OPENAI_API_KEY")
         if not key:
             raise SystemExit("OPENAI_API_KEY is not set.")
         base = os.environ.get("OPENAI_BASE_URL", "https://api.openai.com/v1")
-        return OpenAIClient(model, key, base)
+        return OpenAIClient(model, key, base, temperature)
     if provider == "anthropic":
         key = os.environ.get("ANTHROPIC_API_KEY")
         if not key:
             raise SystemExit("ANTHROPIC_API_KEY is not set.")
-        return AnthropicClient(model, key)
+        return AnthropicClient(model, key, temperature)
     if provider == "adaption":
         key = os.environ.get("ADAPTION_API_KEY")
         if not key:
             raise SystemExit("ADAPTION_API_KEY is not set.")
-        return AdaptionClient(model, key)
+        return AdaptionClient(model, key, temperature)
     raise SystemExit(f"Unknown provider {provider}. Use adaption, openai, or anthropic.")
 
 
@@ -401,6 +405,7 @@ def main() -> None:
     parser.add_argument("--model", default=os.environ.get("PILOT_MODEL", ""))
     parser.add_argument("--modules", default="M0,M1,M3")
     parser.add_argument("--samples", type=int, default=1)
+    parser.add_argument("--temperature", type=float, default=0.7)
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--hide-tool-dates", action="store_true")
     parser.add_argument("--out", default="")
@@ -427,7 +432,7 @@ def main() -> None:
     if not args.model:
         raise SystemExit("Pass --model. The pilot does not pick a default model.")
 
-    client = make_client(args.provider, args.model)
+    client = make_client(args.provider, args.model, args.temperature)
     rows = []
     for index, item in enumerate(items, start=1):
         print(f"[{index}/{len(items)}] {item.id}", flush=True)

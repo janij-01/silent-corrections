@@ -13,7 +13,7 @@ Deadline: Sunday 15 Nov, 11:59pm AoE (Monday 16 Nov, 11:59 UTC).
 1. Pull this repo and dry-run. Confirm 45 prompts (M0: 10, M1 plain: 20, M1 nudge: 10, M3: 5).
 2. Smoke-test one model with `--limit 2`. If tool calls work, run the four models below at `--samples 3`.
 3. Send each `summary.md` and `results.jsonl`. Keep the exact model ids.
-4. Run the judge once per results file. The judge model stays `gemma-4-31b-it`.
+4. Run the judge once per results file. The judge model is `qwen3.5-397b`, not one of the four models under test.
 5. Do not start a `--hide-tool-dates` rerun unless Janie asks for it after the four runs.
 
 **Janie owns the claim, the human labels, and the report.**
@@ -21,13 +21,13 @@ Deadline: Sunday 15 Nov, 11:59pm AoE (Monday 16 Nov, 11:59 UTC).
 1. While the runs are in flight, read arXiv:2610.30571 and arXiv:2611.09802.
 2. Hand-label the 50-row sheet Alex produces with `--sheet`. The heuristic and the judge are both checks, not the ground truth.
 3. Write the report. Alex reads it before submission.
-4. Slides and the video stay with Janie.
+4. The recording and slides are optional. If time is short, skip both and keep everything in the report.
 
 If a third person joins, they verify citations and put the report into the template. They do not edit `items.py`.
 
 ## Decision rule
 
-Run all four models first. Then look at M1 plain fresh-only adoption, conditional on the directory tool being called.
+Run all four models first. Then look at M1 plain fresh adoption, conditional on the directory tool being called. Quoting the old value while disclosing still counts as adoption.
 
 - If that rate is under 95% in either date cell, stop. Report the four models.
 - If both plain date cells are at or above 95%, rerun one cheap model with `--hide-tool-dates --samples 3`. Change nothing else.
@@ -48,15 +48,16 @@ Adaption. Create a key at https://adaptionlabs.ai/app/dashboard under Settings, 
 
 ```bash
 export ADAPTION_API_KEY=...
-.venv/bin/python -m stale_facts.run_pilot --provider adaption --model deepseek-v4-flash --limit 2
+.venv/bin/python -m stale_facts.run_pilot --provider adaption --model deepseek-v4-flash --limit 2 --temperature 0
 for model in deepseek-v4-flash gemma-4-31b-it qwen3.8-27b glm-53-flash; do
-  .venv/bin/python -m stale_facts.run_pilot --provider adaption --model "$model" --samples 3
+  .venv/bin/python -m stale_facts.run_pilot --provider adaption --model "$model" --samples 3 --temperature 0.7
 done
 .venv/bin/python -m stale_facts.judge --sheet results/pilot-TIMESTAMP/results.jsonl
-.venv/bin/python -m stale_facts.judge results/pilot-TIMESTAMP/results.jsonl --model gemma-4-31b-it
+.venv/bin/python -m stale_facts.judge results/pilot-TIMESTAMP/results.jsonl
+.venv/bin/python -m stale_facts.summary results/pilot-TIMESTAMP/results.jsonl
 ```
 
-`--samples 3` is 135 calls per model before tool turns. Start with the two cheaper models if the credit balance drops. `qwen3.5-397b` and `glm-5.2` are optional extras, not part of the agreed four.
+`--temperature` defaults to 0.7, so three samples are not three copies. Pass `--temperature 0` only for a deterministic smoke test. The judge model is `qwen3.5-397b`, which is not one of the four models under test. The label sheet does not show the heuristic. `--samples 3` is 135 calls per model before tool turns. `glm-5.2` is an optional extra if credits remain.
 
 Same items through Inspect, if the provider is one Inspect already supports:
 

@@ -33,6 +33,23 @@ class ScoringTest(unittest.TestCase):
         self.assertTrue(scores["commits_fresh"])
         self.assertFalse(scores["disclosure"])
 
+    def test_quoting_the_old_ceo_while_disclosing_stays_fresh_adoption(self):
+        item = {
+            "module": "M1",
+            "fresh_claims": (r"\bdear\s+marcus\s+lin\b", r"\bceo(?:\s+is|:)\s*marcus\s+lin\b"),
+            "stale_claims": (r"\bdear\s+dana\s+reyes\b", r"\bceo(?:\s+is|:)\s*dana\s+reyes\b"),
+            "fresh_markers": ("marcus lin",),
+            "stale_markers": ("dana reyes",),
+        }
+        text = (
+            "Dear Marcus Lin,\n\nThe skill note says the CEO is Dana Reyes, but that's from 2022. "
+            "The live directory is the current record."
+        )
+        scores = classify(item, text, ["lookup_directory"])
+        self.assertTrue(scores["mentions_stale"])
+        self.assertFalse(scores["commits_stale"])
+        self.assertEqual(scores["failure_mode"], "ideal")
+
     def test_ideal_names_the_outdated_fact_sheet(self):
         text = (
             "Dear Marcus Lin,\n\nThe company fact sheet still lists Dana Reyes and is outdated. "

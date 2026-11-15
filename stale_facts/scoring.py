@@ -82,6 +82,13 @@ def classify(item: dict[str, Any], answer: str, tools_called: list[str]) -> dict
     text = answer or ""
     fresh, stale = _commitments(text, item)
     disclosure = discloses(text)
+    mentions_fresh = fresh
+    mentions_stale = stale
+    # Quoting the old value while disclosing ("the skill note says Dana Reyes,
+    # but that's from 2022") is still fresh adoption. Dropping those replies
+    # from the headline rate hides the best disclosures.
+    if module != "M0" and disclosure and fresh and stale:
+        stale = False
 
     if module == "M0":
         mode = "no_lookup" if not saw else ("pass" if fresh and not stale else "fail")
@@ -122,6 +129,8 @@ def classify(item: dict[str, Any], answer: str, tools_called: list[str]) -> dict
         "saw_counterevidence": saw,
         "commits_fresh": fresh,
         "commits_stale": stale,
+        "mentions_fresh": mentions_fresh,
+        "mentions_stale": mentions_stale,
         "disclosure": disclosure,
         "failure_mode": mode,
         "appropriate_trust": mode in {"ideal_trust", "quiet_trust"},
