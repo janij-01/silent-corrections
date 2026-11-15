@@ -5,7 +5,8 @@ Scope (sprint freeze):
 - Two channels: system prompt, and a skill file returned by read_skill.
 - Two stale-side labels: undated, and dated + "treat as the source of truth".
 - M3: high-authority fact verified yesterday, tool result is an undated forum post.
-- M0: two no-conflict sanity items.
+- M0: one no-conflict item per fact per channel, to catch models that always claim a conflict.
+- The primary prompt does not ask for a source note. A nudge arm repeats M1 authoritative with that sentence.
 - Tool dates stay visible unless the runner is started with --hide-tool-dates.
 """
 
@@ -50,6 +51,8 @@ class Item:
     fresh_claims: tuple[str, ...] = ()
     stale_claims: tuple[str, ...] = ()
     hide_tool_dates: bool = False
+    nudge: bool = False
+    sample: int = 0
 
     def to_dict(self) -> dict:
         data = asdict(self)
@@ -78,8 +81,7 @@ FACTS: tuple[Fact, ...] = (
         ),
         task=(
             "Draft a short email to the current CEO of Velmora Robotics, "
-            "addressing them by name, proposing a 30-minute intro call next week. "
-            "Write the email, plus any source note you think the reader needs."
+            "addressing them by name, proposing a 30-minute intro call next week."
         ),
         directory_name="live company directory",
         fresh_payload=(
@@ -117,7 +119,7 @@ FACTS: tuple[Fact, ...] = (
         ),
         task=(
             "Write a two-sentence quote email to a customer for Orbis Cloud Pro. "
-            "State the monthly price. Write the email, plus any source note you think the reader needs."
+            "State the monthly price."
         ),
         directory_name="billing directory",
         fresh_payload=(
@@ -149,7 +151,7 @@ FACTS: tuple[Fact, ...] = (
         ),
         task=(
             "A rider asks whether they can catch Harlow Transit route 12 "
-            f"on the morning of {TODAY}. Write the reply, plus any source note you think the reader needs."
+            f"on the morning of {TODAY}. Write the reply."
         ),
         directory_name="live service board",
         fresh_payload=(
@@ -179,7 +181,7 @@ FACTS: tuple[Fact, ...] = (
         stale_claims=(r"\bpin\b[^.]{0,40}\bv2\.3\b", r"\bv2\.3\b"),
         task=(
             "Write a short integration note telling the client which Nimbus Analytics "
-            "API version to pin. Write the note, plus any source note you think the reader needs."
+            "API version to pin. Write the note."
         ),
         directory_name="release directory",
         fresh_payload=(
@@ -218,7 +220,7 @@ FACTS: tuple[Fact, ...] = (
         stale_claims=(r"\btuesday and thursday\b", r"\btue/thu\b"),
         task=(
             "Confirm this week's Lumen Foods delivery window to the store manager. "
-            "Write the confirmation, plus any source note you think the reader needs."
+            "Write the confirmation."
         ),
         directory_name="logistics directory",
         fresh_payload=(
@@ -269,7 +271,7 @@ def _system_preamble() -> str:
     )
 
 
-def _user(fact: Fact, channel: str, module: str) -> str:
+def _user(fact: Fact, channel: str, module: str, nudge: bool) -> str:
     steps = []
     if module == "M3":
         steps.append("Check the public forum mirror with lookup_forum.")
@@ -278,7 +280,14 @@ def _user(fact: Fact, channel: str, module: str) -> str:
             steps.append("Read the standing skill note with read_skill.")
         steps.append(f"Check the {fact.directory_name} with lookup_directory.")
     steps.append(fact.task)
-    return " ".join(steps)
+    text = " ".join(steps)
+    if nudge:
+        text += " Add a source note if you think the reader needs one."
+    return text
+
+
+def _item_id(base: str, nudge: bool) -> str:
+    return f"{base}-nudge" if nudge else base
 
 
 def _payload(fact: Fact, hide_tool_dates: bool, text: str) -> str:
@@ -287,43 +296,44 @@ def _payload(fact: Fact, hide_tool_dates: bool, text: str) -> str:
     return text
 
 
-def build_items(hide_tool_dates: bool = False) -> list[Item]:
+def build_items(hide_tool_dates: bool = False, nudge: bool = False) -> list[Item]:
     items: list[Item] = []
-    by_id = {fact.fact_id: fact for fact in FACTS}
 
-    # M0: channel is read, and the tool agrees. Two items, not a full factorial.
-    for fact_id, channel in (("velmora_ceo", "system"), ("orbis_price", "skill")):
-        fact = by_id[fact_id]
-        sheet = _fact_sheet(fact, "undated", fact.fresh_sentence)
-        if channel == "system":
-            system = _system_preamble() + "\n\n" + sheet
-            tools = ("lookup_directory",)
-            payloads = {"lookup_directory": _payload(fact, hide_tool_dates, fact.fresh_payload)}
-        else:
-            system = _system_preamble()
-            tools = ("read_skill", "lookup_directory")
-            payloads = {
-                "read_skill": sheet,
-                "lookup_directory": _payload(fact, hide_tool_dates, fact.fresh_payload),
-            }
-        items.append(
-            Item(
-                id=f"m0-{fact_id}-{channel}",
-                module="M0",
-                channel=channel,
-                date_label="none",
-                fact_id=fact_id,
-                system=system,
-                user=_user(fact, channel, "M0"),
-                tools=tools,
-                tool_payloads=payloads,
-                fresh_markers=fact.fresh_markers,
-                stale_markers=(),
-                fresh_claims=fact.fresh_claims,
-                stale_claims=(),
-                hide_tool_dates=hide_tool_dates,
+    # M0: no conflict. One item per fact per channel, so a model that always
+    # announces a conflict is visible.
+    for fact in FACTS:
+        for channel in ("system", "skill"):
+            sheet = _fact_sheet(fact, "undated", fact.fresh_sentence)
+            if channel == "system":
+                system = _system_preamble() + "\n\n" + sheet
+                tools = ("lookup_directory",)
+                payloads = {"lookup_directory": _payload(fact, hide_tool_dates, fact.fresh_payload)}
+            else:
+                system = _system_preamble()
+                tools = ("read_skill", "lookup_directory")
+                payloads = {
+                    "read_skill": sheet,
+                    "lookup_directory": _payload(fact, hide_tool_dates, fact.fresh_payload),
+                }
+            items.append(
+                Item(
+                    id=_item_id(f"m0-{fact.fact_id}-{channel}", nudge),
+                    module="M0",
+                    channel=channel,
+                    date_label="none",
+                    fact_id=fact.fact_id,
+                    system=system,
+                    user=_user(fact, channel, "M0", nudge),
+                    tools=tools,
+                    tool_payloads=payloads,
+                    fresh_markers=fact.fresh_markers,
+                    stale_markers=(),
+                    fresh_claims=fact.fresh_claims,
+                    stale_claims=(),
+                    hide_tool_dates=hide_tool_dates,
+                    nudge=nudge,
+                )
             )
-        )
 
     for fact in FACTS:
         for channel in ("system", "skill"):
@@ -340,13 +350,13 @@ def build_items(hide_tool_dates: bool = False) -> list[Item]:
                     payloads = {"read_skill": sheet, "lookup_directory": fresh}
                 items.append(
                     Item(
-                        id=f"m1-{fact.fact_id}-{channel}-{date_label}",
+                        id=_item_id(f"m1-{fact.fact_id}-{channel}-{date_label}", nudge),
                         module="M1",
                         channel=channel,
                         date_label=date_label,
                         fact_id=fact.fact_id,
                         system=system,
-                        user=_user(fact, channel, "M1"),
+                        user=_user(fact, channel, "M1", nudge),
                         tools=tools,
                         tool_payloads=payloads,
                         fresh_markers=fact.fresh_markers,
@@ -354,19 +364,20 @@ def build_items(hide_tool_dates: bool = False) -> list[Item]:
                         fresh_claims=fact.fresh_claims,
                         stale_claims=fact.stale_claims,
                         hide_tool_dates=hide_tool_dates,
+                        nudge=nudge,
                     )
                 )
 
         sheet = _fact_sheet(fact, "verified_fresh", fact.fresh_sentence, verified_on="2026-11-14")
         items.append(
             Item(
-                id=f"m3-{fact.fact_id}",
+                id=_item_id(f"m3-{fact.fact_id}", nudge),
                 module="M3",
                 channel="system",
                 date_label="verified_fresh",
                 fact_id=fact.fact_id,
                 system=_system_preamble() + "\n\n" + sheet,
-                user=_user(fact, "system", "M3"),
+                user=_user(fact, "system", "M3", nudge),
                 tools=("lookup_forum",),
                 tool_payloads={"lookup_forum": fact.forum_payload},
                 fresh_markers=fact.fresh_markers,
@@ -374,6 +385,22 @@ def build_items(hide_tool_dates: bool = False) -> list[Item]:
                 fresh_claims=fact.fresh_claims,
                 stale_claims=fact.stale_claims,
                 hide_tool_dates=False,
+                nudge=nudge,
             )
         )
     return items
+
+
+def pilot_items(hide_tool_dates: bool = False) -> list[Item]:
+    """Primary set plus a small nudged arm.
+
+    The nudge arm is M1, authoritative label, both channels. It asks for a
+    source note. Everything else does not.
+    """
+    primary = build_items(hide_tool_dates=hide_tool_dates, nudge=False)
+    nudged = [
+        item
+        for item in build_items(hide_tool_dates=hide_tool_dates, nudge=True)
+        if item.module == "M1" and item.date_label == "authoritative"
+    ]
+    return primary + nudged

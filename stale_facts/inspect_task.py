@@ -23,7 +23,7 @@ from inspect_ai.solver import Generate, TaskState, generate, solver
 from inspect_ai.tool import ToolError, tool
 from inspect_ai.util import store
 
-from stale_facts.items import build_items
+from stale_facts.items import pilot_items
 from stale_facts.scoring import classify
 
 
@@ -129,7 +129,7 @@ def silent_corrections(hide_tool_dates: bool = False, modules: str = "M0,M1,M3")
 
     chosen = {part.strip() for part in modules.split(",") if part.strip()}
     samples = []
-    for item in build_items(hide_tool_dates=hide_tool_dates):
+    for item in pilot_items(hide_tool_dates=hide_tool_dates):
         if item.module not in chosen:
             continue
         meta = json.loads(json.dumps(item.to_dict()))

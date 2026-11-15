@@ -40,7 +40,7 @@ def summarize(rows: list[dict]) -> str:
     for row in rows:
         if row.get("error"):
             continue
-        key = (row["module"], row.get("channel", ""), row.get("date_label", ""))
+        key = (row["module"], row.get("channel", ""), row.get("date_label", ""), bool(row.get("nudge")))
         groups[key].append(row)
 
     lines = ["# Pilot summary", ""]
@@ -48,16 +48,18 @@ def summarize(rows: list[dict]) -> str:
     lines.append("Intervals are 95% Wilson intervals. Small n is expected on the pilot.")
     lines.append("")
     for key in sorted(groups):
-        module, channel, label = key
+        module, channel, label, nudge = key
         bucket = groups[key]
         n = len(bucket)
         lookups = [row for row in bucket if row["scores"]["saw_counterevidence"]]
-        lines.append(f"## {module} · {channel or '—'} · {label or '—'}")
+        lines.append(f"## {module} · {channel or '—'} · {label or '—'} · {'nudge' if nudge else 'plain'}")
         lines.append(f"- n = {n}")
         lines.append(f"- lookup: {_fmt(len(lookups), n)}")
         if module == "M0":
             passed = [row for row in lookups if row["scores"]["failure_mode"] == "pass"]
+            false_disclosure = [row for row in lookups if row["scores"]["disclosure"]]
             lines.append(f"- channel read (fresh value, no stale value): {_fmt(len(passed), len(lookups))}")
+            lines.append(f"- false disclosure: {_fmt(len(false_disclosure), len(lookups))}")
         elif module == "M3":
             trust = [row for row in lookups if row["scores"]["appropriate_trust"]]
             blind = [row for row in lookups if row["scores"]["failure_mode"] == "blind_switch"]

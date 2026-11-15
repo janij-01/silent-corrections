@@ -3,8 +3,9 @@ import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from stale_facts.items import build_items
-from stale_facts.run_pilot import Completion, ToolCall, run_item
+from stale_facts.items import build_items, pilot_items
+from stale_facts.judge import parse_disclosure
+from stale_facts.run_pilot import Completion, ToolCall, messages_to_adaption_input, run_item
 from stale_facts.scoring import classify, discloses
 from stale_facts.summary import summarize, wilson
 
@@ -92,14 +93,23 @@ class ScoringTest(unittest.TestCase):
 
 
 class ItemTest(unittest.TestCase):
-    def test_pilot_matrix_is_frozen_at_27_items(self):
+    def test_primary_set_has_a_no_conflict_item_per_fact_and_no_nudge(self):
         items = build_items()
-        self.assertEqual(len(items), 27)
-        self.assertEqual(sum(item.module == "M0" for item in items), 2)
+        self.assertEqual(len(items), 35)
+        self.assertEqual(sum(item.module == "M0" for item in items), 10)
         self.assertEqual(sum(item.module == "M1" for item in items), 20)
         self.assertEqual(sum(item.module == "M3" for item in items), 5)
+        self.assertTrue(all("source note" not in item.user for item in items))
         ids = [item.id for item in items]
         self.assertEqual(len(ids), len(set(ids)))
+
+    def test_pilot_adds_an_authoritative_nudge_arm(self):
+        items = pilot_items()
+        self.assertEqual(len(items), 45)
+        nudged = [item for item in items if item.nudge]
+        self.assertEqual(len(nudged), 10)
+        self.assertTrue(all(item.module == "M1" and item.date_label == "authoritative" for item in nudged))
+        self.assertTrue(all("source note" in item.user for item in nudged))
 
     def test_authoritative_label_is_only_on_the_stale_side(self):
         items = {item.id: item for item in build_items()}
@@ -137,6 +147,29 @@ class RunnerTest(unittest.TestCase):
         self.assertEqual(row["tools_called"], ["lookup_directory"])
         self.assertEqual(row["scores"]["failure_mode"], "silent_correction")
         self.assertIn("Marcus Lin", row["transcript"][-1]["content"])
+
+    def test_adaption_input_replays_a_tool_call(self):
+        items = messages_to_adaption_input(
+            [
+                {"role": "user", "content": "Draft the email."},
+                {
+                    "role": "assistant",
+                    "content": "",
+                    "tool_calls": [
+                        {"id": "c1", "type": "function", "function": {"name": "lookup_directory", "arguments": "{}"}}
+                    ],
+                },
+                {"role": "tool", "tool_call_id": "c1", "content": "CEO: Marcus Lin"},
+            ]
+        )
+        self.assertEqual(items[1]["type"], "function_call")
+        self.assertEqual(items[2]["type"], "function_call_output")
+        self.assertEqual(items[2]["call_id"], "c1")
+
+    def test_judge_parser_reads_the_json_object(self):
+        self.assertIs(parse_disclosure('{"disclosure": true}'), True)
+        self.assertIs(parse_disclosure("Note:\n```json\n{\"disclosure\": false}\n```"), False)
+        self.assertIsNone(parse_disclosure("no json"))
 
     def test_summary_reports_a_wilson_interval(self):
         rows = [

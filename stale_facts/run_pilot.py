@@ -13,11 +13,11 @@ import json
 import os
 import urllib.error
 import urllib.request
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import datetime, timezone
 from pathlib import Path
 
-from stale_facts.items import build_items
+from stale_facts.items import pilot_items
 from stale_facts.scoring import classify
 from stale_facts.summary import summarize
 
@@ -87,6 +87,101 @@ class OpenAIClient(ModelClient):
                 )
             )
         return Completion(text=message.get("content") or "", tool_calls=calls)
+
+
+ADAPTION_URL = "https://api.prod.adaptionlabs.ai/api/v1/responses"
+
+
+def messages_to_adaption_input(messages: list[dict]) -> list[dict]:
+    items = []
+    for message in messages:
+        role = message["role"]
+        if role == "user":
+            items.append({"role": "user", "content": message["content"]})
+        elif role == "assistant":
+            if message.get("content"):
+                items.append({"role": "assistant", "content": message["content"]})
+            for call in message.get("tool_calls") or []:
+                items.append(
+                    {
+                        "type": "function_call",
+                        "call_id": call["id"],
+                        "name": call["function"]["name"],
+                        "arguments": call["function"].get("arguments") or "{}",
+                    }
+                )
+        elif role == "tool":
+            items.append(
+                {
+                    "type": "function_call_output",
+                    "call_id": message["tool_call_id"],
+                    "output": message["content"],
+                }
+            )
+    return items
+
+
+class AdaptionClient(ModelClient):
+    """Adaption Responses API. Reads ADAPTION_API_KEY. Does not use agentic memory."""
+
+    def __init__(self, model: str, api_key: str):
+        self.model = model
+        self.api_key = api_key
+
+    def complete(self, system: str, messages: list[dict], tools: list[dict]) -> Completion:
+        payload = {
+            "model": self.model,
+            "instructions": system,
+            "input": messages_to_adaption_input(messages),
+            "temperature": 0,
+            "max_output_tokens": 1024,
+            "agentic_memory": False,
+            "store": False,
+        }
+        if tools:
+            payload["tool_choice"] = "auto"
+            payload["tools"] = [
+                {
+                    "type": "function",
+                    "name": tool["name"],
+                    "description": tool["description"],
+                    "parameters": {
+                        "type": "object",
+                        "properties": {"query": {"type": "string"}},
+                        "required": [],
+                    },
+                }
+                for tool in tools
+            ]
+        data = _post_json(
+            ADAPTION_URL,
+            payload,
+            {
+                "Authorization": f"Bearer {self.api_key}",
+                "Content-Type": "application/json",
+            },
+        )
+        if data.get("status") == "failed":
+            error = data.get("error") or {}
+            raise RuntimeError(error.get("message") or "Adaption response failed")
+        text = []
+        calls = []
+        for item in data.get("output") or []:
+            if item.get("type") == "function_call":
+                calls.append(
+                    ToolCall(
+                        id=item.get("call_id") or item.get("id") or f"call_{len(calls)}",
+                        name=item.get("name") or "",
+                        arguments=item.get("arguments") or "{}",
+                    )
+                )
+            elif item.get("type") == "message":
+                for part in item.get("content") or []:
+                    if part.get("type") == "output_text" and part.get("text"):
+                        text.append(part["text"])
+        if not text and data.get("output_text") and not calls:
+            text.append(data["output_text"])
+        return Completion(text="\n".join(text).strip(), tool_calls=calls)
 
 
 class AnthropicClient(ModelClient):
@@ -255,6 +350,16 @@ def run_item(client: ModelClient, item, provider: str, model: str, max_turns: in
     return row
 
 
+def with_samples(items: list, samples: int) -> list:
+    if samples <= 1:
+        return items
+    return [
+        replace(item, id=f"{item.id}#s{index}", sample=index)
+        for item in items
+        for index in range(samples)
+    ]
+
+
 def select_items(items: list, modules: set[str] | None, limit: int | None) -> list:
     chosen = [item for item in items if modules is None or item.module in modules]
     if limit is not None:
@@ -281,22 +386,31 @@ def make_client(provider: str, model: str) -> ModelClient:
         if not key:
             raise SystemExit("ANTHROPIC_API_KEY is not set.")
         return AnthropicClient(model, key)
-    raise SystemExit(f"Unknown provider {provider}. Use openai or anthropic.")
+    if provider == "adaption":
+        key = os.environ.get("ADAPTION_API_KEY")
+        if not key:
+            raise SystemExit("ADAPTION_API_KEY is not set.")
+        return AdaptionClient(model, key)
+    raise SystemExit(f"Unknown provider {provider}. Use adaption, openai, or anthropic.")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run the silent-corrections pilot.")
     parser.add_argument("--dry-run", action="store_true", help="Write prompts only. No model calls.")
-    parser.add_argument("--provider", default=os.environ.get("PILOT_PROVIDER", "openai"))
+    parser.add_argument("--provider", default=os.environ.get("PILOT_PROVIDER", "adaption"))
     parser.add_argument("--model", default=os.environ.get("PILOT_MODEL", ""))
     parser.add_argument("--modules", default="M0,M1,M3")
+    parser.add_argument("--samples", type=int, default=1)
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--hide-tool-dates", action="store_true")
     parser.add_argument("--out", default="")
     args = parser.parse_args()
 
     modules = {part.strip() for part in args.modules.split(",") if part.strip()}
-    items = select_items(build_items(hide_tool_dates=args.hide_tool_dates), modules, args.limit)
+    items = with_samples(
+        select_items(pilot_items(hide_tool_dates=args.hide_tool_dates), modules, args.limit),
+        args.samples,
+    )
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     out = Path(args.out) if args.out else ROOT / "results" / f"pilot-{stamp}"
     out.mkdir(parents=True, exist_ok=True)
@@ -305,7 +419,8 @@ def main() -> None:
     write_jsonl(out / "prompts.jsonl", prompts)
     counts: dict[str, int] = {}
     for item in items:
-        counts[item.module] = counts.get(item.module, 0) + 1
+        key = f"{item.module}-nudge" if item.nudge else item.module
+        counts[key] = counts.get(key, 0) + 1
     print(f"Wrote {len(items)} prompts to {out / 'prompts.jsonl'} ({counts})")
     if args.dry_run:
         return
