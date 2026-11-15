@@ -1,8 +1,8 @@
-"""Inspect task for the same frozen pilot the stdlib runner executes.
+"""Inspect task for the same items the standard-library runner executes.
 
 From the repo root, after `pip install -r requirements.txt`:
 
-    inspect eval stale_facts/inspect_task.py --model openai/gpt-4.1 --limit 27
+    inspect eval stale_facts/inspect_task.py --model mockllm/model --limit 1
 """
 
 from __future__ import annotations
