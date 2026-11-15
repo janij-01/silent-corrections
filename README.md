@@ -6,8 +6,6 @@ Today's date inside every prompt is 2026-11-15. Entities are fictional.
 
 ## Who does what
 
-Deadline: Sunday 15 Nov, 11:59pm AoE (Monday 16 Nov, 11:59 UTC).
-
 **Alex runs the Adaption models and the disclosure judge. He does not edit prompts during a run, and he does not write the report.**
 
 1. Pull this repo and dry-run. Confirm 45 prompts (M0: 10, M1 plain: 20, M1 nudge: 10, M3: 5).
