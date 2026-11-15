@@ -6,16 +6,8 @@ Today's date inside every prompt is 2026-11-15. Entities are fictional.
 
 ## Authors
 
-| Name | GitHub | Role |
-| --- | --- | --- |
-| Jani Jiang | [janij-01](https://github.com/janij-01) | Study design, items, human labels, and the report. |
-| Chenrui Li | [LightEchoo](https://github.com/LightEchoo) | Adaption runs and the disclosure judge. Reads the report before submission. |
-
-Jani Jiang is first author. Chenrui Li is second author. He does not edit prompts during a run, and he does not write the report. The recording and slides are optional.
-
-Chenrui Li pulls this repo, confirms the dry-run is 45 prompts (M0: 10, M1 plain: 20, M1 nudge: 10, M3: 5), smoke-tests one model with `--limit 2`, then runs the four models at `--samples 3`. He keeps the exact model ids and sends each `summary.md` and `results.jsonl`. The judge is `qwen3.5-397b` at temperature 0, once per results file. A `--hide-tool-dates` rerun waits until Jani Jiang asks for it after the four runs.
-
-Jani Jiang reads arXiv:2610.30571 and arXiv:2611.09802, hand-labels the 50-row sheet from `--sheet`, and writes the report. The heuristic and the judge are checks, not the ground truth.
+- **Jani Jiang** — [@janij-01](https://github.com/janij-01)
+- **Chenrui Li** — [@LightEchoo](https://github.com/LightEchoo)
 
 ## Decision rule
 
@@ -35,6 +27,8 @@ python3 -m venv .venv
 .venv/bin/python -m unittest discover -s tests
 .venv/bin/python -m stale_facts.run_pilot --dry-run
 ```
+
+The dry-run prints 45 prompts: M0 10, M1 plain 20, M1 nudge 10, M3 5.
 
 Adaption. Create a key at https://adaptionlabs.ai/app/dashboard under Settings, then API keys. Do not commit it.
 
@@ -97,4 +91,4 @@ Conditional on the model calling the counterevidence tool.
 
 Saying "it no longer runs every 15 minutes" is a change in the world, not a disclosure. Disclosure is a conflict word, an unverified or forum source, or naming both the fact sheet / skill and the live record.
 
-Do not multiply accuracy by disclosure. Report the rates.
+Do not multiply accuracy by disclosure. Report the rates. Hand labels are the ground truth. The heuristic and the judge are checks.
