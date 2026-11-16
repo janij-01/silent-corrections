@@ -25,6 +25,9 @@ from stale_facts.summary import summarize
 
 
 ROOT = Path(__file__).resolve().parents[1]
+# Reasoning tokens count toward the output limit. At 1024, models that think
+# before answering sometimes spent the whole budget and returned no text.
+DEFAULT_MAX_OUTPUT_TOKENS = 4096
 TOOL_DOCS = {
     "lookup_directory": "Look up the current record in the live directory for this request.",
     "read_skill": "Read the standing skill note for this request.",
@@ -43,6 +46,12 @@ class ToolCall:
 class Completion:
     text: str
     tool_calls: list[ToolCall]
+    # "completed", "incomplete", or None when the provider does not report it.
+    status: str | None = None
+    incomplete_reason: str | None = None
+    # Token counts as the provider reports them, so a reply near the output
+    # limit can be seen instead of guessed from how it ends.
+    usage: dict | None = None
 
 
 class ModelClient:
@@ -127,10 +136,12 @@ def messages_to_adaption_input(messages: list[dict]) -> list[dict]:
 class AdaptionClient(ModelClient):
     """Adaption Responses API. Reads ADAPTION_API_KEY. Does not use agentic memory."""
 
-    def __init__(self, model: str, api_key: str, temperature: float = 0.7):
+    def __init__(self, model: str, api_key: str, temperature: float = 0.7,
+                 max_output_tokens: int = DEFAULT_MAX_OUTPUT_TOKENS):
         self.model = model
         self.api_key = api_key
         self.temperature = temperature
+        self.max_output_tokens = max_output_tokens
 
     def complete(self, system: str, messages: list[dict], tools: list[dict]) -> Completion:
         payload = {
@@ -138,7 +149,7 @@ class AdaptionClient(ModelClient):
             "instructions": system,
             "input": messages_to_adaption_input(messages),
             "temperature": self.temperature,
-            "max_output_tokens": 1024,
+            "max_output_tokens": self.max_output_tokens,
             "agentic_memory": False,
             "store": False,
         }
@@ -185,7 +196,19 @@ class AdaptionClient(ModelClient):
                         text.append(part["text"])
         if not text and data.get("output_text") and not calls:
             text.append(data["output_text"])
-        return Completion(text="\n".join(text).strip(), tool_calls=calls)
+        raw_usage = data.get("usage") or {}
+        return Completion(
+            text="\n".join(text).strip(),
+            tool_calls=calls,
+            status=data.get("status"),
+            incomplete_reason=(data.get("incomplete_details") or {}).get("reason"),
+            usage={
+                "input_tokens": raw_usage.get("input_tokens"),
+                "output_tokens": raw_usage.get("output_tokens"),
+                "reasoning_tokens": (raw_usage.get("output_tokens_details") or {}).get("reasoning_tokens"),
+                "cost": raw_usage.get("cost"),
+            },
+        )
 
 
 class AnthropicClient(ModelClient):
@@ -330,8 +353,14 @@ def run_item(client: ModelClient, item, provider: str, model: str, max_turns: in
     called: list[str] = []
     transcript = [{"role": "system", "content": item.system}, {"role": "user", "content": item.user}]
     answer = ""
+    statuses: list[str | None] = []
+    reasons: list[str | None] = []
+    usages: list[dict | None] = []
     for _ in range(max_turns):
         completion = client.complete(item.system, messages, tools)
+        statuses.append(completion.status)
+        reasons.append(completion.incomplete_reason)
+        usages.append(completion.usage)
         if completion.tool_calls:
             for call in completion.tool_calls:
                 called.append(call.name)
@@ -362,6 +391,14 @@ def run_item(client: ModelClient, item, provider: str, model: str, max_turns: in
             "provider": provider,
             "model": model,
             "temperature": getattr(client, "temperature", None),
+            "max_output_tokens": getattr(client, "max_output_tokens", None),
+            # An incomplete turn is not an answer the model chose to give:
+            # the reply was cut off, usually by the output limit.
+            "turn_statuses": statuses,
+            "incomplete": any(status == "incomplete" for status in statuses),
+            "incomplete_reason": next((reason for reason in reasons if reason), None),
+            # One entry per model turn; the last one is the turn that wrote the answer.
+            "turn_usage": usages,
             "answer": answer,
             "tools_called": called,
             "transcript": transcript,
@@ -396,7 +433,8 @@ def write_jsonl(path: Path, rows: list[dict]) -> None:
             handle.write(json.dumps(row, ensure_ascii=False) + "\n")
 
 
-def make_client(provider: str, model: str, temperature: float = 0.7) -> ModelClient:
+def make_client(provider: str, model: str, temperature: float = 0.7,
+                max_output_tokens: int = DEFAULT_MAX_OUTPUT_TOKENS) -> ModelClient:
     if provider == "openai":
         key = os.environ.get("OPENAI_API_KEY")
         if not key:
@@ -412,7 +450,7 @@ def make_client(provider: str, model: str, temperature: float = 0.7) -> ModelCli
         key = os.environ.get("ADAPTION_API_KEY")
         if not key:
             raise SystemExit("ADAPTION_API_KEY is not set.")
-        return AdaptionClient(model, key, temperature)
+        return AdaptionClient(model, key, temperature, max_output_tokens)
     raise SystemExit(f"Unknown provider {provider}. Use adaption, openai, or anthropic.")
 
 
@@ -427,6 +465,12 @@ def main() -> None:
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--hide-tool-dates", action="store_true")
     parser.add_argument("--out", default="")
+    parser.add_argument("--max-output-tokens", type=int, default=DEFAULT_MAX_OUTPUT_TOKENS)
+    parser.add_argument(
+        "--only-ids",
+        default="",
+        help="Text file with one item id per line (as in results.jsonl, e.g. m1-...#s1). Runs only those.",
+    )
     args = parser.parse_args()
 
     modules = {part.strip() for part in args.modules.split(",") if part.strip()}
@@ -434,6 +478,12 @@ def main() -> None:
         select_items(pilot_items(hide_tool_dates=args.hide_tool_dates), modules, args.limit),
         args.samples,
     )
+    if args.only_ids:
+        wanted = {line.strip() for line in Path(args.only_ids).read_text().splitlines() if line.strip()}
+        items = [item for item in items if item.id in wanted]
+        missing = wanted - {item.id for item in items}
+        if missing:
+            raise SystemExit(f"Ids not in this item set: {sorted(missing)}")
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     out = Path(args.out) if args.out else ROOT / "results" / f"pilot-{stamp}"
     out.mkdir(parents=True, exist_ok=True)
@@ -450,7 +500,7 @@ def main() -> None:
     if not args.model:
         raise SystemExit("Pass --model. The pilot does not pick a default model.")
 
-    client = make_client(args.provider, args.model, args.temperature)
+    client = make_client(args.provider, args.model, args.temperature, args.max_output_tokens)
     rows = []
     for index, item in enumerate(items, start=1):
         print(f"[{index}/{len(items)}] {item.id}", flush=True)
