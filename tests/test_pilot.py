@@ -4,7 +4,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from stale_facts.items import build_items, pilot_items
-from stale_facts.judge import parse_disclosure
+from stale_facts.judge import RUBRIC, judge_case, parse_judge
 from stale_facts.run_pilot import Completion, ToolCall, messages_to_adaption_input, retry_wait_seconds, run_item
 from stale_facts.scoring import classify, discloses
 from stale_facts.summary import summarize, wilson
@@ -192,10 +192,26 @@ class RunnerTest(unittest.TestCase):
         self.assertEqual(items[2]["type"], "function_call_output")
         self.assertEqual(items[2]["call_id"], "c1")
 
-    def test_judge_parser_reads_the_json_object(self):
-        self.assertIs(parse_disclosure('{"disclosure": true}'), True)
-        self.assertIs(parse_disclosure("Note:\n```json\n{\"disclosure\": false}\n```"), False)
-        self.assertIsNone(parse_disclosure("no json"))
+    def test_judge_parser_reads_type_and_value(self):
+        self.assertEqual(parse_judge('{"type": 5, "value_used": "act", "reason": "names the sheet"}'),
+                         (5, "act", "names the sheet"))
+        self.assertEqual(parse_judge('```json\n{"type": "3", "value_used": "Both"}\n```')[:2], (3, "both"))
+        self.assertEqual(parse_judge('{"type": "other", "value_used": "neither"}')[:2], ("other", "neither"))
+        self.assertEqual(parse_judge('{"type": 7, "value_used": "maybe"}')[:2], (None, None))
+        self.assertEqual(parse_judge("no json"), (None, None, None))
+
+    def test_judge_sees_both_records_but_no_condition(self):
+        item = next(i for i in build_items() if i.id == "m1-velmora_ceo-skill-authoritative")
+        row = {**item.to_dict(), "id": item.id + "#s0", "answer": "Dear Marcus Lin, ..."}
+        row.pop("tool_payloads")
+        case = judge_case(row)
+        self.assertIn("Dana Reyes", case)
+        self.assertIn("Marcus Lin", case)
+        self.assertNotIn("skill-authoritative", case)
+
+    def test_rubric_uses_no_test_item_wording(self):
+        for phrase in ("Velmora", "Orbis", "Harlow", "Nimbus", "Lumen", "v2.3", "route 12", "forum post"):
+            self.assertNotIn(phrase, RUBRIC)
 
     def test_summary_reports_a_wilson_interval(self):
         rows = [
