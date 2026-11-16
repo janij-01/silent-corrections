@@ -1,0 +1,5686 @@
+{
+  "n_rows": 540,
+  "n_scored": 538,
+  "models": [
+    "deepseek-v4-flash",
+    "gemma-4-31b-it",
+    "glm-53-flash",
+    "qwen3.8-27b"
+  ],
+  "per_model": {
+    "deepseek-v4-flash": {
+      "M1": {
+        "judge_type": {
+          "1": 3,
+          "2": 16,
+          "3": 2,
+          "4": 0,
+          "5": 39,
+          "other": 0
+        },
+        "judge_value_used": {
+          "act": 56,
+          "other": 3,
+          "neither": 1,
+          "both": 0
+        },
+        "rates": {
+          "acts": {
+            "k": 56,
+            "n": 60,
+            "rate": 0.933,
+            "ci95": [
+              0.841,
+              0.974
+            ]
+          },
+          "told_strict": {
+            "k": 39,
+            "n": 60,
+            "rate": 0.65,
+            "ci95": [
+              0.524,
+              0.758
+            ]
+          },
+          "told_loose": {
+            "k": 39,
+            "n": 60,
+            "rate": 0.65,
+            "ci95": [
+              0.524,
+              0.758
+            ]
+          },
+          "silent_strict": {
+            "k": 21,
+            "n": 60,
+            "rate": 0.35,
+            "ci95": [
+              0.242,
+              0.476
+            ]
+          },
+          "silent_loose": {
+            "k": 21,
+            "n": 60,
+            "rate": 0.35,
+            "ci95": [
+              0.242,
+              0.476
+            ]
+          }
+        },
+        "by_condition": {
+          "skill|authoritative": {
+            "told_strict": {
+              "k": 13,
+              "n": 15,
+              "rate": 0.867,
+              "ci95": [
+                0.621,
+                0.963
+              ]
+            },
+            "acts": {
+              "k": 15,
+              "n": 15,
+              "rate": 1.0,
+              "ci95": [
+                0.796,
+                1.0
+              ]
+            }
+          },
+          "skill|undated": {
+            "told_strict": {
+              "k": 11,
+              "n": 15,
+              "rate": 0.733,
+              "ci95": [
+                0.48,
+                0.891
+              ]
+            },
+            "acts": {
+              "k": 15,
+              "n": 15,
+              "rate": 1.0,
+              "ci95": [
+                0.796,
+                1.0
+              ]
+            }
+          },
+          "system|authoritative": {
+            "told_strict": {
+              "k": 8,
+              "n": 15,
+              "rate": 0.533,
+              "ci95": [
+                0.301,
+                0.752
+              ]
+            },
+            "acts": {
+              "k": 11,
+              "n": 15,
+              "rate": 0.733,
+              "ci95": [
+                0.48,
+                0.891
+              ]
+            }
+          },
+          "system|undated": {
+            "told_strict": {
+              "k": 7,
+              "n": 15,
+              "rate": 0.467,
+              "ci95": [
+                0.248,
+                0.699
+              ]
+            },
+            "acts": {
+              "k": 15,
+              "n": 15,
+              "rate": 1.0,
+              "ci95": [
+                0.796,
+                1.0
+              ]
+            }
+          }
+        }
+      },
+      "M1-nudge": {
+        "judge_type": {
+          "1": 0,
+          "2": 1,
+          "3": 0,
+          "4": 0,
+          "5": 29,
+          "other": 0
+        },
+        "judge_value_used": {
+          "act": 28,
+          "other": 2,
+          "neither": 0,
+          "both": 0
+        },
+        "rates": {
+          "acts": {
+            "k": 28,
+            "n": 30,
+            "rate": 0.933,
+            "ci95": [
+              0.787,
+              0.982
+            ]
+          },
+          "told_strict": {
+            "k": 29,
+            "n": 30,
+            "rate": 0.967,
+            "ci95": [
+              0.833,
+              0.994
+            ]
+          },
+          "told_loose": {
+            "k": 29,
+            "n": 30,
+            "rate": 0.967,
+            "ci95": [
+              0.833,
+              0.994
+            ]
+          },
+          "silent_strict": {
+            "k": 1,
+            "n": 30,
+            "rate": 0.033,
+            "ci95": [
+              0.006,
+              0.167
+            ]
+          },
+          "silent_loose": {
+            "k": 1,
+            "n": 30,
+            "rate": 0.033,
+            "ci95": [
+              0.006,
+              0.167
+            ]
+          }
+        }
+      },
+      "M0": {
+        "judge_type": {
+          "1": 8,
+          "2": 22,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "other": 0
+        },
+        "judge_value_used": {
+          "act": 30,
+          "other": 0,
+          "neither": 0,
+          "both": 0
+        }
+      },
+      "M3": {
+        "judge_type": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 15,
+          "other": 0
+        },
+        "judge_value_used": {
+          "act": 15,
+          "other": 0,
+          "neither": 0,
+          "both": 0
+        }
+      },
+      "controls": {
+        "m0_false_alarm_strict": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "m0_false_alarm_loose": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "m3_keeps": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "m3_switches": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "m3_flags": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        }
+      },
+      "ranking": {
+        "acts": {
+          "k": 56,
+          "n": 60,
+          "rate": 0.933,
+          "ci95": [
+            0.841,
+            0.974
+          ]
+        },
+        "acts_and_tells_strict": {
+          "k": 35,
+          "n": 60,
+          "rate": 0.583,
+          "ci95": [
+            0.457,
+            0.699
+          ]
+        },
+        "acts_and_tells_loose": {
+          "k": 35,
+          "n": 60,
+          "rate": 0.583,
+          "ci95": [
+            0.457,
+            0.699
+          ]
+        }
+      }
+    },
+    "gemma-4-31b-it": {
+      "M1": {
+        "judge_type": {
+          "1": 34,
+          "2": 16,
+          "3": 9,
+          "4": 1,
+          "5": 0,
+          "other": 0
+        },
+        "judge_value_used": {
+          "act": 60,
+          "other": 0,
+          "neither": 0,
+          "both": 0
+        },
+        "rates": {
+          "acts": {
+            "k": 60,
+            "n": 60,
+            "rate": 1.0,
+            "ci95": [
+              0.94,
+              1.0
+            ]
+          },
+          "told_strict": {
+            "k": 0,
+            "n": 60,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.06
+            ]
+          },
+          "told_loose": {
+            "k": 1,
+            "n": 60,
+            "rate": 0.017,
+            "ci95": [
+              0.003,
+              0.089
+            ]
+          },
+          "silent_strict": {
+            "k": 60,
+            "n": 60,
+            "rate": 1.0,
+            "ci95": [
+              0.94,
+              1.0
+            ]
+          },
+          "silent_loose": {
+            "k": 59,
+            "n": 60,
+            "rate": 0.983,
+            "ci95": [
+              0.911,
+              0.997
+            ]
+          }
+        },
+        "by_condition": {
+          "skill|authoritative": {
+            "told_strict": {
+              "k": 0,
+              "n": 15,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.204
+              ]
+            },
+            "acts": {
+              "k": 15,
+              "n": 15,
+              "rate": 1.0,
+              "ci95": [
+                0.796,
+                1.0
+              ]
+            }
+          },
+          "skill|undated": {
+            "told_strict": {
+              "k": 0,
+              "n": 15,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.204
+              ]
+            },
+            "acts": {
+              "k": 15,
+              "n": 15,
+              "rate": 1.0,
+              "ci95": [
+                0.796,
+                1.0
+              ]
+            }
+          },
+          "system|authoritative": {
+            "told_strict": {
+              "k": 0,
+              "n": 15,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.204
+              ]
+            },
+            "acts": {
+              "k": 15,
+              "n": 15,
+              "rate": 1.0,
+              "ci95": [
+                0.796,
+                1.0
+              ]
+            }
+          },
+          "system|undated": {
+            "told_strict": {
+              "k": 0,
+              "n": 15,
+              "rate": 0.0,
+              "ci95": [
+                0.0,
+                0.204
+              ]
+            },
+            "acts": {
+              "k": 15,
+              "n": 15,
+              "rate": 1.0,
+              "ci95": [
+                0.796,
+                1.0
+              ]
+            }
+          }
+        }
+      },
+      "M1-nudge": {
+        "judge_type": {
+          "1": 0,
+          "2": 25,
+          "3": 0,
+          "4": 1,
+          "5": 4,
+          "other": 0
+        },
+        "judge_value_used": {
+          "act": 30,
+          "other": 0,
+          "neither": 0,
+          "both": 0
+        },
+        "rates": {
+          "acts": {
+            "k": 30,
+            "n": 30,
+            "rate": 1.0,
+            "ci95": [
+              0.886,
+              1.0
+            ]
+          },
+          "told_strict": {
+            "k": 4,
+            "n": 30,
+            "rate": 0.133,
+            "ci95": [
+              0.053,
+              0.297
+            ]
+          },
+          "told_loose": {
+            "k": 5,
+            "n": 30,
+            "rate": 0.167,
+            "ci95": [
+              0.073,
+              0.336
+            ]
+          },
+          "silent_strict": {
+            "k": 26,
+            "n": 30,
+            "rate": 0.867,
+            "ci95": [
+              0.703,
+              0.947
+            ]
+          },
+          "silent_loose": {
+            "k": 25,
+            "n": 30,
+            "rate": 0.833,
+            "ci95": [
+              0.664,
+              0.927
+            ]
+          }
+        }
+      },
+      "M0": {
+        "judge_type": {
+          "1": 29,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "other": 0
+        },
+        "judge_value_used": {
+          "act": 29,
+          "other": 0,
+          "neither": 0,
+          "both": 0
+        }
+      },
+      "M3": {
+        "judge_type": {
+          "1": 8,
+          "2": 1,
+          "3": 0,
+          "4": 3,
+          "5": 3,
+          "other": 0
+        },
+        "judge_value_used": {
+          "act": 15,
+          "other": 0,
+          "neither": 0,
+          "both": 0
+        }
+      },
+      "controls": {
+        "m0_false_alarm_strict": {
+          "k": 0,
+          "n": 29,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.117
+          ]
+        },
+        "m0_false_alarm_loose": {
+          "k": 0,
+          "n": 29,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.117
+          ]
+        },
+        "m3_keeps": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "m3_switches": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "m3_flags": {
+          "k": 3,
+          "n": 15,
+          "rate": 0.2,
+          "ci95": [
+            0.07,
+            0.452
+          ]
+        }
+      },
+      "ranking": {
+        "acts": {
+          "k": 60,
+          "n": 60,
+          "rate": 1.0,
+          "ci95": [
+            0.94,
+            1.0
+          ]
+        },
+        "acts_and_tells_strict": {
+          "k": 0,
+          "n": 60,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.06
+          ]
+        },
+        "acts_and_tells_loose": {
+          "k": 1,
+          "n": 60,
+          "rate": 0.017,
+          "ci95": [
+            0.003,
+            0.089
+          ]
+        }
+      }
+    },
+    "glm-53-flash": {
+      "M1": {
+        "judge_type": {
+          "1": 0,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": 59,
+          "other": 0
+        },
+        "judge_value_used": {
+          "act": 60,
+          "other": 0,
+          "neither": 0,
+          "both": 0
+        },
+        "rates": {
+          "acts": {
+            "k": 60,
+            "n": 60,
+            "rate": 1.0,
+            "ci95": [
+              0.94,
+              1.0
+            ]
+          },
+          "told_strict": {
+            "k": 59,
+            "n": 60,
+            "rate": 0.983,
+            "ci95": [
+              0.911,
+              0.997
+            ]
+          },
+          "told_loose": {
+            "k": 59,
+            "n": 60,
+            "rate": 0.983,
+            "ci95": [
+              0.911,
+              0.997
+            ]
+          },
+          "silent_strict": {
+            "k": 1,
+            "n": 60,
+            "rate": 0.017,
+            "ci95": [
+              0.003,
+              0.089
+            ]
+          },
+          "silent_loose": {
+            "k": 1,
+            "n": 60,
+            "rate": 0.017,
+            "ci95": [
+              0.003,
+              0.089
+            ]
+          }
+        },
+        "by_condition": {
+          "skill|authoritative": {
+            "told_strict": {
+              "k": 15,
+              "n": 15,
+              "rate": 1.0,
+              "ci95": [
+                0.796,
+                1.0
+              ]
+            },
+            "acts": {
+              "k": 15,
+              "n": 15,
+              "rate": 1.0,
+              "ci95": [
+                0.796,
+                1.0
+              ]
+            }
+          },
+          "skill|undated": {
+            "told_strict": {
+              "k": 15,
+              "n": 15,
+              "rate": 1.0,
+              "ci95": [
+                0.796,
+                1.0
+              ]
+            },
+            "acts": {
+              "k": 15,
+              "n": 15,
+              "rate": 1.0,
+              "ci95": [
+                0.796,
+                1.0
+              ]
+            }
+          },
+          "system|authoritative": {
+            "told_strict": {
+              "k": 15,
+              "n": 15,
+              "rate": 1.0,
+              "ci95": [
+                0.796,
+                1.0
+              ]
+            },
+            "acts": {
+              "k": 15,
+              "n": 15,
+              "rate": 1.0,
+              "ci95": [
+                0.796,
+                1.0
+              ]
+            }
+          },
+          "system|undated": {
+            "told_strict": {
+              "k": 14,
+              "n": 15,
+              "rate": 0.933,
+              "ci95": [
+                0.702,
+                0.988
+              ]
+            },
+            "acts": {
+              "k": 15,
+              "n": 15,
+              "rate": 1.0,
+              "ci95": [
+                0.796,
+                1.0
+              ]
+            }
+          }
+        }
+      },
+      "M1-nudge": {
+        "judge_type": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 30,
+          "other": 0
+        },
+        "judge_value_used": {
+          "act": 30,
+          "other": 0,
+          "neither": 0,
+          "both": 0
+        },
+        "rates": {
+          "acts": {
+            "k": 30,
+            "n": 30,
+            "rate": 1.0,
+            "ci95": [
+              0.886,
+              1.0
+            ]
+          },
+          "told_strict": {
+            "k": 30,
+            "n": 30,
+            "rate": 1.0,
+            "ci95": [
+              0.886,
+              1.0
+            ]
+          },
+          "told_loose": {
+            "k": 30,
+            "n": 30,
+            "rate": 1.0,
+            "ci95": [
+              0.886,
+              1.0
+            ]
+          },
+          "silent_strict": {
+            "k": 0,
+            "n": 30,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.114
+            ]
+          },
+          "silent_loose": {
+            "k": 0,
+            "n": 30,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.114
+            ]
+          }
+        }
+      },
+      "M0": {
+        "judge_type": {
+          "1": 0,
+          "2": 30,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "other": 0
+        },
+        "judge_value_used": {
+          "act": 30,
+          "other": 0,
+          "neither": 0,
+          "both": 0
+        }
+      },
+      "M3": {
+        "judge_type": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 15,
+          "other": 0
+        },
+        "judge_value_used": {
+          "act": 15,
+          "other": 0,
+          "neither": 0,
+          "both": 0
+        }
+      },
+      "controls": {
+        "m0_false_alarm_strict": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "m0_false_alarm_loose": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "m3_keeps": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "m3_switches": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "m3_flags": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        }
+      },
+      "ranking": {
+        "acts": {
+          "k": 60,
+          "n": 60,
+          "rate": 1.0,
+          "ci95": [
+            0.94,
+            1.0
+          ]
+        },
+        "acts_and_tells_strict": {
+          "k": 59,
+          "n": 60,
+          "rate": 0.983,
+          "ci95": [
+            0.911,
+            0.997
+          ]
+        },
+        "acts_and_tells_loose": {
+          "k": 59,
+          "n": 60,
+          "rate": 0.983,
+          "ci95": [
+            0.911,
+            0.997
+          ]
+        }
+      }
+    },
+    "qwen3.8-27b": {
+      "M1": {
+        "judge_type": {
+          "1": 7,
+          "2": 3,
+          "3": 1,
+          "4": 1,
+          "5": 48,
+          "other": 0
+        },
+        "judge_value_used": {
+          "act": 57,
+          "other": 2,
+          "neither": 1,
+          "both": 0
+        },
+        "rates": {
+          "acts": {
+            "k": 57,
+            "n": 60,
+            "rate": 0.95,
+            "ci95": [
+              0.863,
+              0.983
+            ]
+          },
+          "told_strict": {
+            "k": 48,
+            "n": 60,
+            "rate": 0.8,
+            "ci95": [
+              0.682,
+              0.882
+            ]
+          },
+          "told_loose": {
+            "k": 49,
+            "n": 60,
+            "rate": 0.817,
+            "ci95": [
+              0.701,
+              0.894
+            ]
+          },
+          "silent_strict": {
+            "k": 12,
+            "n": 60,
+            "rate": 0.2,
+            "ci95": [
+              0.118,
+              0.318
+            ]
+          },
+          "silent_loose": {
+            "k": 11,
+            "n": 60,
+            "rate": 0.183,
+            "ci95": [
+              0.106,
+              0.299
+            ]
+          }
+        },
+        "by_condition": {
+          "skill|authoritative": {
+            "told_strict": {
+              "k": 14,
+              "n": 15,
+              "rate": 0.933,
+              "ci95": [
+                0.702,
+                0.988
+              ]
+            },
+            "acts": {
+              "k": 15,
+              "n": 15,
+              "rate": 1.0,
+              "ci95": [
+                0.796,
+                1.0
+              ]
+            }
+          },
+          "skill|undated": {
+            "told_strict": {
+              "k": 12,
+              "n": 15,
+              "rate": 0.8,
+              "ci95": [
+                0.548,
+                0.93
+              ]
+            },
+            "acts": {
+              "k": 15,
+              "n": 15,
+              "rate": 1.0,
+              "ci95": [
+                0.796,
+                1.0
+              ]
+            }
+          },
+          "system|authoritative": {
+            "told_strict": {
+              "k": 12,
+              "n": 15,
+              "rate": 0.8,
+              "ci95": [
+                0.548,
+                0.93
+              ]
+            },
+            "acts": {
+              "k": 12,
+              "n": 15,
+              "rate": 0.8,
+              "ci95": [
+                0.548,
+                0.93
+              ]
+            }
+          },
+          "system|undated": {
+            "told_strict": {
+              "k": 10,
+              "n": 15,
+              "rate": 0.667,
+              "ci95": [
+                0.417,
+                0.848
+              ]
+            },
+            "acts": {
+              "k": 15,
+              "n": 15,
+              "rate": 1.0,
+              "ci95": [
+                0.796,
+                1.0
+              ]
+            }
+          }
+        }
+      },
+      "M1-nudge": {
+        "judge_type": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 29,
+          "other": 0
+        },
+        "judge_value_used": {
+          "act": 27,
+          "other": 2,
+          "neither": 0,
+          "both": 0
+        },
+        "rates": {
+          "acts": {
+            "k": 27,
+            "n": 29,
+            "rate": 0.931,
+            "ci95": [
+              0.78,
+              0.981
+            ]
+          },
+          "told_strict": {
+            "k": 29,
+            "n": 29,
+            "rate": 1.0,
+            "ci95": [
+              0.883,
+              1.0
+            ]
+          },
+          "told_loose": {
+            "k": 29,
+            "n": 29,
+            "rate": 1.0,
+            "ci95": [
+              0.883,
+              1.0
+            ]
+          },
+          "silent_strict": {
+            "k": 0,
+            "n": 29,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.117
+            ]
+          },
+          "silent_loose": {
+            "k": 0,
+            "n": 29,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.117
+            ]
+          }
+        }
+      },
+      "M0": {
+        "judge_type": {
+          "1": 6,
+          "2": 24,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "other": 0
+        },
+        "judge_value_used": {
+          "act": 30,
+          "other": 0,
+          "neither": 0,
+          "both": 0
+        }
+      },
+      "M3": {
+        "judge_type": {
+          "1": 3,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 12,
+          "other": 0
+        },
+        "judge_value_used": {
+          "act": 15,
+          "other": 0,
+          "neither": 0,
+          "both": 0
+        }
+      },
+      "controls": {
+        "m0_false_alarm_strict": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "m0_false_alarm_loose": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "m3_keeps": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "m3_switches": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "m3_flags": {
+          "k": 12,
+          "n": 15,
+          "rate": 0.8,
+          "ci95": [
+            0.548,
+            0.93
+          ]
+        }
+      },
+      "ranking": {
+        "acts": {
+          "k": 57,
+          "n": 60,
+          "rate": 0.95,
+          "ci95": [
+            0.863,
+            0.983
+          ]
+        },
+        "acts_and_tells_strict": {
+          "k": 45,
+          "n": 60,
+          "rate": 0.75,
+          "ci95": [
+            0.628,
+            0.842
+          ]
+        },
+        "acts_and_tells_loose": {
+          "k": 46,
+          "n": 60,
+          "rate": 0.767,
+          "ci95": [
+            0.646,
+            0.856
+          ]
+        }
+      }
+    }
+  },
+  "not_scored": [
+    {
+      "model": "gemma-4-31b-it",
+      "reason": "not judged: incomplete reply",
+      "n": 1
+    },
+    {
+      "model": "qwen3.8-27b",
+      "reason": "not judged: incomplete reply",
+      "n": 1
+    }
+  ],
+  "cells": {
+    "by_model_module": {
+      "deepseek-v4-flash|M1": {
+        "replies": 60,
+        "lookup": {
+          "k": 60,
+          "n": 60,
+          "rate": 1.0,
+          "ci95": [
+            0.94,
+            1.0
+          ]
+        },
+        "n_typed": 60,
+        "told_strict": {
+          "k": 39,
+          "n": 60,
+          "rate": 0.65,
+          "ci95": [
+            0.524,
+            0.758
+          ]
+        },
+        "told_loose": {
+          "k": 39,
+          "n": 60,
+          "rate": 0.65,
+          "ci95": [
+            0.524,
+            0.758
+          ]
+        },
+        "value_act": {
+          "k": 56,
+          "n": 60,
+          "rate": 0.933,
+          "ci95": [
+            0.841,
+            0.974
+          ]
+        },
+        "value_other": {
+          "k": 3,
+          "n": 60,
+          "rate": 0.05,
+          "ci95": [
+            0.017,
+            0.137
+          ]
+        },
+        "value_neither": {
+          "k": 1,
+          "n": 60,
+          "rate": 0.017,
+          "ci95": [
+            0.003,
+            0.089
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 60,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.06
+          ]
+        },
+        "named_conflict_used_other": 3,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "deepseek-v4-flash|M1-nudge": {
+        "replies": 30,
+        "lookup": {
+          "k": 30,
+          "n": 30,
+          "rate": 1.0,
+          "ci95": [
+            0.886,
+            1.0
+          ]
+        },
+        "n_typed": 30,
+        "told_strict": {
+          "k": 29,
+          "n": 30,
+          "rate": 0.967,
+          "ci95": [
+            0.833,
+            0.994
+          ]
+        },
+        "told_loose": {
+          "k": 29,
+          "n": 30,
+          "rate": 0.967,
+          "ci95": [
+            0.833,
+            0.994
+          ]
+        },
+        "value_act": {
+          "k": 28,
+          "n": 30,
+          "rate": 0.933,
+          "ci95": [
+            0.787,
+            0.982
+          ]
+        },
+        "value_other": {
+          "k": 2,
+          "n": 30,
+          "rate": 0.067,
+          "ci95": [
+            0.018,
+            0.213
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "named_conflict_used_other": 2,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "deepseek-v4-flash|M0": {
+        "replies": 30,
+        "lookup": {
+          "k": 30,
+          "n": 30,
+          "rate": 1.0,
+          "ci95": [
+            0.886,
+            1.0
+          ]
+        },
+        "n_typed": 30,
+        "told_strict": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "told_loose": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "value_act": {
+          "k": 30,
+          "n": 30,
+          "rate": 1.0,
+          "ci95": [
+            0.886,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "deepseek-v4-flash|M3": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "told_loose": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "gemma-4-31b-it|M1": {
+        "replies": 60,
+        "lookup": {
+          "k": 60,
+          "n": 60,
+          "rate": 1.0,
+          "ci95": [
+            0.94,
+            1.0
+          ]
+        },
+        "n_typed": 60,
+        "told_strict": {
+          "k": 0,
+          "n": 60,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.06
+          ]
+        },
+        "told_loose": {
+          "k": 1,
+          "n": 60,
+          "rate": 0.017,
+          "ci95": [
+            0.003,
+            0.089
+          ]
+        },
+        "value_act": {
+          "k": 60,
+          "n": 60,
+          "rate": 1.0,
+          "ci95": [
+            0.94,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 60,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.06
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 60,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.06
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 60,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.06
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "gemma-4-31b-it|M1-nudge": {
+        "replies": 30,
+        "lookup": {
+          "k": 30,
+          "n": 30,
+          "rate": 1.0,
+          "ci95": [
+            0.886,
+            1.0
+          ]
+        },
+        "n_typed": 30,
+        "told_strict": {
+          "k": 4,
+          "n": 30,
+          "rate": 0.133,
+          "ci95": [
+            0.053,
+            0.297
+          ]
+        },
+        "told_loose": {
+          "k": 5,
+          "n": 30,
+          "rate": 0.167,
+          "ci95": [
+            0.073,
+            0.336
+          ]
+        },
+        "value_act": {
+          "k": 30,
+          "n": 30,
+          "rate": 1.0,
+          "ci95": [
+            0.886,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "gemma-4-31b-it|M0": {
+        "replies": 30,
+        "lookup": {
+          "k": 30,
+          "n": 30,
+          "rate": 1.0,
+          "ci95": [
+            0.886,
+            1.0
+          ]
+        },
+        "n_typed": 29,
+        "told_strict": {
+          "k": 0,
+          "n": 29,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.117
+          ]
+        },
+        "told_loose": {
+          "k": 0,
+          "n": 29,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.117
+          ]
+        },
+        "value_act": {
+          "k": 29,
+          "n": 29,
+          "rate": 1.0,
+          "ci95": [
+            0.883,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 29,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.117
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 29,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.117
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 29,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.117
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 1
+      },
+      "gemma-4-31b-it|M3": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 3,
+          "n": 15,
+          "rate": 0.2,
+          "ci95": [
+            0.07,
+            0.452
+          ]
+        },
+        "told_loose": {
+          "k": 6,
+          "n": 15,
+          "rate": 0.4,
+          "ci95": [
+            0.198,
+            0.643
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "glm-53-flash|M1": {
+        "replies": 60,
+        "lookup": {
+          "k": 60,
+          "n": 60,
+          "rate": 1.0,
+          "ci95": [
+            0.94,
+            1.0
+          ]
+        },
+        "n_typed": 60,
+        "told_strict": {
+          "k": 59,
+          "n": 60,
+          "rate": 0.983,
+          "ci95": [
+            0.911,
+            0.997
+          ]
+        },
+        "told_loose": {
+          "k": 59,
+          "n": 60,
+          "rate": 0.983,
+          "ci95": [
+            0.911,
+            0.997
+          ]
+        },
+        "value_act": {
+          "k": 60,
+          "n": 60,
+          "rate": 1.0,
+          "ci95": [
+            0.94,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 60,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.06
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 60,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.06
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 60,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.06
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "glm-53-flash|M1-nudge": {
+        "replies": 30,
+        "lookup": {
+          "k": 30,
+          "n": 30,
+          "rate": 1.0,
+          "ci95": [
+            0.886,
+            1.0
+          ]
+        },
+        "n_typed": 30,
+        "told_strict": {
+          "k": 30,
+          "n": 30,
+          "rate": 1.0,
+          "ci95": [
+            0.886,
+            1.0
+          ]
+        },
+        "told_loose": {
+          "k": 30,
+          "n": 30,
+          "rate": 1.0,
+          "ci95": [
+            0.886,
+            1.0
+          ]
+        },
+        "value_act": {
+          "k": 30,
+          "n": 30,
+          "rate": 1.0,
+          "ci95": [
+            0.886,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "glm-53-flash|M0": {
+        "replies": 30,
+        "lookup": {
+          "k": 30,
+          "n": 30,
+          "rate": 1.0,
+          "ci95": [
+            0.886,
+            1.0
+          ]
+        },
+        "n_typed": 30,
+        "told_strict": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "told_loose": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "value_act": {
+          "k": 30,
+          "n": 30,
+          "rate": 1.0,
+          "ci95": [
+            0.886,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "glm-53-flash|M3": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "told_loose": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "qwen3.8-27b|M1": {
+        "replies": 60,
+        "lookup": {
+          "k": 60,
+          "n": 60,
+          "rate": 1.0,
+          "ci95": [
+            0.94,
+            1.0
+          ]
+        },
+        "n_typed": 60,
+        "told_strict": {
+          "k": 48,
+          "n": 60,
+          "rate": 0.8,
+          "ci95": [
+            0.682,
+            0.882
+          ]
+        },
+        "told_loose": {
+          "k": 49,
+          "n": 60,
+          "rate": 0.817,
+          "ci95": [
+            0.701,
+            0.894
+          ]
+        },
+        "value_act": {
+          "k": 57,
+          "n": 60,
+          "rate": 0.95,
+          "ci95": [
+            0.863,
+            0.983
+          ]
+        },
+        "value_other": {
+          "k": 2,
+          "n": 60,
+          "rate": 0.033,
+          "ci95": [
+            0.009,
+            0.114
+          ]
+        },
+        "value_neither": {
+          "k": 1,
+          "n": 60,
+          "rate": 0.017,
+          "ci95": [
+            0.003,
+            0.089
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 60,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.06
+          ]
+        },
+        "named_conflict_used_other": 2,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "qwen3.8-27b|M1-nudge": {
+        "replies": 30,
+        "lookup": {
+          "k": 30,
+          "n": 30,
+          "rate": 1.0,
+          "ci95": [
+            0.886,
+            1.0
+          ]
+        },
+        "n_typed": 29,
+        "told_strict": {
+          "k": 29,
+          "n": 29,
+          "rate": 1.0,
+          "ci95": [
+            0.883,
+            1.0
+          ]
+        },
+        "told_loose": {
+          "k": 29,
+          "n": 29,
+          "rate": 1.0,
+          "ci95": [
+            0.883,
+            1.0
+          ]
+        },
+        "value_act": {
+          "k": 27,
+          "n": 29,
+          "rate": 0.931,
+          "ci95": [
+            0.78,
+            0.981
+          ]
+        },
+        "value_other": {
+          "k": 2,
+          "n": 29,
+          "rate": 0.069,
+          "ci95": [
+            0.019,
+            0.22
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 29,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.117
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 29,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.117
+          ]
+        },
+        "named_conflict_used_other": 2,
+        "typed_other": 0,
+        "not_scored": 1
+      },
+      "qwen3.8-27b|M0": {
+        "replies": 30,
+        "lookup": {
+          "k": 30,
+          "n": 30,
+          "rate": 1.0,
+          "ci95": [
+            0.886,
+            1.0
+          ]
+        },
+        "n_typed": 30,
+        "told_strict": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "told_loose": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "value_act": {
+          "k": 30,
+          "n": 30,
+          "rate": 1.0,
+          "ci95": [
+            0.886,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 30,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.114
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "qwen3.8-27b|M3": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 12,
+          "n": 15,
+          "rate": 0.8,
+          "ci95": [
+            0.548,
+            0.93
+          ]
+        },
+        "told_loose": {
+          "k": 12,
+          "n": 15,
+          "rate": 0.8,
+          "ci95": [
+            0.548,
+            0.93
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      }
+    },
+    "by_model_fact": {
+      "deepseek-v4-flash|harlow_route": {
+        "replies": 18,
+        "lookup": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "n_typed": 18,
+        "told_strict": {
+          "k": 13,
+          "n": 18,
+          "rate": 0.722,
+          "ci95": [
+            0.491,
+            0.875
+          ]
+        },
+        "told_loose": {
+          "k": 13,
+          "n": 18,
+          "rate": 0.722,
+          "ci95": [
+            0.491,
+            0.875
+          ]
+        },
+        "value_act": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "deepseek-v4-flash|lumen_delivery": {
+        "replies": 18,
+        "lookup": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "n_typed": 18,
+        "told_strict": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "told_loose": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 18,
+          "rate": 0.833,
+          "ci95": [
+            0.608,
+            0.942
+          ]
+        },
+        "value_other": {
+          "k": 2,
+          "n": 18,
+          "rate": 0.111,
+          "ci95": [
+            0.031,
+            0.328
+          ]
+        },
+        "value_neither": {
+          "k": 1,
+          "n": 18,
+          "rate": 0.056,
+          "ci95": [
+            0.01,
+            0.258
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "named_conflict_used_other": 2,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "deepseek-v4-flash|nimbus_api": {
+        "replies": 18,
+        "lookup": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "n_typed": 18,
+        "told_strict": {
+          "k": 16,
+          "n": 18,
+          "rate": 0.889,
+          "ci95": [
+            0.672,
+            0.969
+          ]
+        },
+        "told_loose": {
+          "k": 16,
+          "n": 18,
+          "rate": 0.889,
+          "ci95": [
+            0.672,
+            0.969
+          ]
+        },
+        "value_act": {
+          "k": 17,
+          "n": 18,
+          "rate": 0.944,
+          "ci95": [
+            0.742,
+            0.99
+          ]
+        },
+        "value_other": {
+          "k": 1,
+          "n": 18,
+          "rate": 0.056,
+          "ci95": [
+            0.01,
+            0.258
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "named_conflict_used_other": 1,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "deepseek-v4-flash|orbis_price": {
+        "replies": 18,
+        "lookup": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "n_typed": 18,
+        "told_strict": {
+          "k": 7,
+          "n": 18,
+          "rate": 0.389,
+          "ci95": [
+            0.203,
+            0.614
+          ]
+        },
+        "told_loose": {
+          "k": 7,
+          "n": 18,
+          "rate": 0.389,
+          "ci95": [
+            0.203,
+            0.614
+          ]
+        },
+        "value_act": {
+          "k": 16,
+          "n": 18,
+          "rate": 0.889,
+          "ci95": [
+            0.672,
+            0.969
+          ]
+        },
+        "value_other": {
+          "k": 2,
+          "n": 18,
+          "rate": 0.111,
+          "ci95": [
+            0.031,
+            0.328
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "named_conflict_used_other": 2,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "deepseek-v4-flash|velmora_ceo": {
+        "replies": 18,
+        "lookup": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "n_typed": 18,
+        "told_strict": {
+          "k": 14,
+          "n": 18,
+          "rate": 0.778,
+          "ci95": [
+            0.548,
+            0.91
+          ]
+        },
+        "told_loose": {
+          "k": 14,
+          "n": 18,
+          "rate": 0.778,
+          "ci95": [
+            0.548,
+            0.91
+          ]
+        },
+        "value_act": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "gemma-4-31b-it|harlow_route": {
+        "replies": 18,
+        "lookup": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "n_typed": 18,
+        "told_strict": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "told_loose": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_act": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "gemma-4-31b-it|lumen_delivery": {
+        "replies": 18,
+        "lookup": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "n_typed": 18,
+        "told_strict": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "told_loose": {
+          "k": 1,
+          "n": 18,
+          "rate": 0.056,
+          "ci95": [
+            0.01,
+            0.258
+          ]
+        },
+        "value_act": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "gemma-4-31b-it|nimbus_api": {
+        "replies": 18,
+        "lookup": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "n_typed": 18,
+        "told_strict": {
+          "k": 2,
+          "n": 18,
+          "rate": 0.111,
+          "ci95": [
+            0.031,
+            0.328
+          ]
+        },
+        "told_loose": {
+          "k": 2,
+          "n": 18,
+          "rate": 0.111,
+          "ci95": [
+            0.031,
+            0.328
+          ]
+        },
+        "value_act": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "gemma-4-31b-it|orbis_price": {
+        "replies": 18,
+        "lookup": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "n_typed": 18,
+        "told_strict": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "told_loose": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_act": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "gemma-4-31b-it|velmora_ceo": {
+        "replies": 18,
+        "lookup": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "n_typed": 18,
+        "told_strict": {
+          "k": 2,
+          "n": 18,
+          "rate": 0.111,
+          "ci95": [
+            0.031,
+            0.328
+          ]
+        },
+        "told_loose": {
+          "k": 3,
+          "n": 18,
+          "rate": 0.167,
+          "ci95": [
+            0.058,
+            0.392
+          ]
+        },
+        "value_act": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "glm-53-flash|harlow_route": {
+        "replies": 18,
+        "lookup": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "n_typed": 18,
+        "told_strict": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "told_loose": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "value_act": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "glm-53-flash|lumen_delivery": {
+        "replies": 18,
+        "lookup": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "n_typed": 18,
+        "told_strict": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "told_loose": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "value_act": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "glm-53-flash|nimbus_api": {
+        "replies": 18,
+        "lookup": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "n_typed": 18,
+        "told_strict": {
+          "k": 17,
+          "n": 18,
+          "rate": 0.944,
+          "ci95": [
+            0.742,
+            0.99
+          ]
+        },
+        "told_loose": {
+          "k": 17,
+          "n": 18,
+          "rate": 0.944,
+          "ci95": [
+            0.742,
+            0.99
+          ]
+        },
+        "value_act": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "glm-53-flash|orbis_price": {
+        "replies": 18,
+        "lookup": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "n_typed": 18,
+        "told_strict": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "told_loose": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "value_act": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "glm-53-flash|velmora_ceo": {
+        "replies": 18,
+        "lookup": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "n_typed": 18,
+        "told_strict": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "told_loose": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "value_act": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "qwen3.8-27b|harlow_route": {
+        "replies": 18,
+        "lookup": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "n_typed": 18,
+        "told_strict": {
+          "k": 14,
+          "n": 18,
+          "rate": 0.778,
+          "ci95": [
+            0.548,
+            0.91
+          ]
+        },
+        "told_loose": {
+          "k": 14,
+          "n": 18,
+          "rate": 0.778,
+          "ci95": [
+            0.548,
+            0.91
+          ]
+        },
+        "value_act": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "qwen3.8-27b|lumen_delivery": {
+        "replies": 18,
+        "lookup": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "n_typed": 17,
+        "told_strict": {
+          "k": 17,
+          "n": 17,
+          "rate": 1.0,
+          "ci95": [
+            0.816,
+            1.0
+          ]
+        },
+        "told_loose": {
+          "k": 17,
+          "n": 17,
+          "rate": 1.0,
+          "ci95": [
+            0.816,
+            1.0
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 17,
+          "rate": 0.882,
+          "ci95": [
+            0.657,
+            0.967
+          ]
+        },
+        "value_other": {
+          "k": 2,
+          "n": 17,
+          "rate": 0.118,
+          "ci95": [
+            0.033,
+            0.343
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 17,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.184
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 17,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.184
+          ]
+        },
+        "named_conflict_used_other": 2,
+        "typed_other": 0,
+        "not_scored": 1
+      },
+      "qwen3.8-27b|nimbus_api": {
+        "replies": 18,
+        "lookup": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "n_typed": 18,
+        "told_strict": {
+          "k": 17,
+          "n": 18,
+          "rate": 0.944,
+          "ci95": [
+            0.742,
+            0.99
+          ]
+        },
+        "told_loose": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "value_act": {
+          "k": 17,
+          "n": 18,
+          "rate": 0.944,
+          "ci95": [
+            0.742,
+            0.99
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_neither": {
+          "k": 1,
+          "n": 18,
+          "rate": 0.056,
+          "ci95": [
+            0.01,
+            0.258
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "qwen3.8-27b|orbis_price": {
+        "replies": 18,
+        "lookup": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "n_typed": 18,
+        "told_strict": {
+          "k": 11,
+          "n": 18,
+          "rate": 0.611,
+          "ci95": [
+            0.386,
+            0.797
+          ]
+        },
+        "told_loose": {
+          "k": 11,
+          "n": 18,
+          "rate": 0.611,
+          "ci95": [
+            0.386,
+            0.797
+          ]
+        },
+        "value_act": {
+          "k": 16,
+          "n": 18,
+          "rate": 0.889,
+          "ci95": [
+            0.672,
+            0.969
+          ]
+        },
+        "value_other": {
+          "k": 2,
+          "n": 18,
+          "rate": 0.111,
+          "ci95": [
+            0.031,
+            0.328
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "named_conflict_used_other": 2,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "qwen3.8-27b|velmora_ceo": {
+        "replies": 18,
+        "lookup": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "n_typed": 18,
+        "told_strict": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "told_loose": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "value_act": {
+          "k": 18,
+          "n": 18,
+          "rate": 1.0,
+          "ci95": [
+            0.824,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 18,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.176
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      }
+    },
+    "m1_by_condition": {
+      "deepseek-v4-flash|skill|authoritative|False": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 13,
+          "n": 15,
+          "rate": 0.867,
+          "ci95": [
+            0.621,
+            0.963
+          ]
+        },
+        "told_loose": {
+          "k": 13,
+          "n": 15,
+          "rate": 0.867,
+          "ci95": [
+            0.621,
+            0.963
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "deepseek-v4-flash|skill|authoritative|True": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "told_loose": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_act": {
+          "k": 14,
+          "n": 15,
+          "rate": 0.933,
+          "ci95": [
+            0.702,
+            0.988
+          ]
+        },
+        "value_other": {
+          "k": 1,
+          "n": 15,
+          "rate": 0.067,
+          "ci95": [
+            0.012,
+            0.298
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 1,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "deepseek-v4-flash|skill|undated|False": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 11,
+          "n": 15,
+          "rate": 0.733,
+          "ci95": [
+            0.48,
+            0.891
+          ]
+        },
+        "told_loose": {
+          "k": 11,
+          "n": 15,
+          "rate": 0.733,
+          "ci95": [
+            0.48,
+            0.891
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "deepseek-v4-flash|system|authoritative|False": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 8,
+          "n": 15,
+          "rate": 0.533,
+          "ci95": [
+            0.301,
+            0.752
+          ]
+        },
+        "told_loose": {
+          "k": 8,
+          "n": 15,
+          "rate": 0.533,
+          "ci95": [
+            0.301,
+            0.752
+          ]
+        },
+        "value_act": {
+          "k": 11,
+          "n": 15,
+          "rate": 0.733,
+          "ci95": [
+            0.48,
+            0.891
+          ]
+        },
+        "value_other": {
+          "k": 3,
+          "n": 15,
+          "rate": 0.2,
+          "ci95": [
+            0.07,
+            0.452
+          ]
+        },
+        "value_neither": {
+          "k": 1,
+          "n": 15,
+          "rate": 0.067,
+          "ci95": [
+            0.012,
+            0.298
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 3,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "deepseek-v4-flash|system|authoritative|True": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 14,
+          "n": 15,
+          "rate": 0.933,
+          "ci95": [
+            0.702,
+            0.988
+          ]
+        },
+        "told_loose": {
+          "k": 14,
+          "n": 15,
+          "rate": 0.933,
+          "ci95": [
+            0.702,
+            0.988
+          ]
+        },
+        "value_act": {
+          "k": 14,
+          "n": 15,
+          "rate": 0.933,
+          "ci95": [
+            0.702,
+            0.988
+          ]
+        },
+        "value_other": {
+          "k": 1,
+          "n": 15,
+          "rate": 0.067,
+          "ci95": [
+            0.012,
+            0.298
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 1,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "deepseek-v4-flash|system|undated|False": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 7,
+          "n": 15,
+          "rate": 0.467,
+          "ci95": [
+            0.248,
+            0.699
+          ]
+        },
+        "told_loose": {
+          "k": 7,
+          "n": 15,
+          "rate": 0.467,
+          "ci95": [
+            0.248,
+            0.699
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "gemma-4-31b-it|skill|authoritative|False": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "told_loose": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "gemma-4-31b-it|skill|authoritative|True": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 4,
+          "n": 15,
+          "rate": 0.267,
+          "ci95": [
+            0.109,
+            0.52
+          ]
+        },
+        "told_loose": {
+          "k": 5,
+          "n": 15,
+          "rate": 0.333,
+          "ci95": [
+            0.152,
+            0.583
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "gemma-4-31b-it|skill|undated|False": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "told_loose": {
+          "k": 1,
+          "n": 15,
+          "rate": 0.067,
+          "ci95": [
+            0.012,
+            0.298
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "gemma-4-31b-it|system|authoritative|False": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "told_loose": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "gemma-4-31b-it|system|authoritative|True": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "told_loose": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "gemma-4-31b-it|system|undated|False": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "told_loose": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "glm-53-flash|skill|authoritative|False": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "told_loose": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "glm-53-flash|skill|authoritative|True": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "told_loose": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "glm-53-flash|skill|undated|False": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "told_loose": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "glm-53-flash|system|authoritative|False": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "told_loose": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "glm-53-flash|system|authoritative|True": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "told_loose": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "glm-53-flash|system|undated|False": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 14,
+          "n": 15,
+          "rate": 0.933,
+          "ci95": [
+            0.702,
+            0.988
+          ]
+        },
+        "told_loose": {
+          "k": 14,
+          "n": 15,
+          "rate": 0.933,
+          "ci95": [
+            0.702,
+            0.988
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "qwen3.8-27b|skill|authoritative|False": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 14,
+          "n": 15,
+          "rate": 0.933,
+          "ci95": [
+            0.702,
+            0.988
+          ]
+        },
+        "told_loose": {
+          "k": 14,
+          "n": 15,
+          "rate": 0.933,
+          "ci95": [
+            0.702,
+            0.988
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "qwen3.8-27b|skill|authoritative|True": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 14,
+        "told_strict": {
+          "k": 14,
+          "n": 14,
+          "rate": 1.0,
+          "ci95": [
+            0.785,
+            1.0
+          ]
+        },
+        "told_loose": {
+          "k": 14,
+          "n": 14,
+          "rate": 1.0,
+          "ci95": [
+            0.785,
+            1.0
+          ]
+        },
+        "value_act": {
+          "k": 14,
+          "n": 14,
+          "rate": 1.0,
+          "ci95": [
+            0.785,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 14,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.215
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 14,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.215
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 14,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.215
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 1
+      },
+      "qwen3.8-27b|skill|undated|False": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 12,
+          "n": 15,
+          "rate": 0.8,
+          "ci95": [
+            0.548,
+            0.93
+          ]
+        },
+        "told_loose": {
+          "k": 12,
+          "n": 15,
+          "rate": 0.8,
+          "ci95": [
+            0.548,
+            0.93
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "qwen3.8-27b|system|authoritative|False": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 12,
+          "n": 15,
+          "rate": 0.8,
+          "ci95": [
+            0.548,
+            0.93
+          ]
+        },
+        "told_loose": {
+          "k": 12,
+          "n": 15,
+          "rate": 0.8,
+          "ci95": [
+            0.548,
+            0.93
+          ]
+        },
+        "value_act": {
+          "k": 12,
+          "n": 15,
+          "rate": 0.8,
+          "ci95": [
+            0.548,
+            0.93
+          ]
+        },
+        "value_other": {
+          "k": 2,
+          "n": 15,
+          "rate": 0.133,
+          "ci95": [
+            0.037,
+            0.379
+          ]
+        },
+        "value_neither": {
+          "k": 1,
+          "n": 15,
+          "rate": 0.067,
+          "ci95": [
+            0.012,
+            0.298
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 2,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "qwen3.8-27b|system|authoritative|True": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "told_loose": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_act": {
+          "k": 13,
+          "n": 15,
+          "rate": 0.867,
+          "ci95": [
+            0.621,
+            0.963
+          ]
+        },
+        "value_other": {
+          "k": 2,
+          "n": 15,
+          "rate": 0.133,
+          "ci95": [
+            0.037,
+            0.379
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 2,
+        "typed_other": 0,
+        "not_scored": 0
+      },
+      "qwen3.8-27b|system|undated|False": {
+        "replies": 15,
+        "lookup": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "n_typed": 15,
+        "told_strict": {
+          "k": 10,
+          "n": 15,
+          "rate": 0.667,
+          "ci95": [
+            0.417,
+            0.848
+          ]
+        },
+        "told_loose": {
+          "k": 11,
+          "n": 15,
+          "rate": 0.733,
+          "ci95": [
+            0.48,
+            0.891
+          ]
+        },
+        "value_act": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0,
+          "ci95": [
+            0.796,
+            1.0
+          ]
+        },
+        "value_other": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_neither": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "value_both": {
+          "k": 0,
+          "n": 15,
+          "rate": 0.0,
+          "ci95": [
+            0.0,
+            0.204
+          ]
+        },
+        "named_conflict_used_other": 0,
+        "typed_other": 0,
+        "not_scored": 0
+      }
+    }
+  },
+  "rule_vs_judge_told_strict": {
+    "agreement": {
+      "k": 385,
+      "n": 419,
+      "rate": 0.919,
+      "ci95": [
+        0.889,
+        0.941
+      ]
+    },
+    "kappa": 0.826,
+    "rule_yes_judge_no": 0,
+    "rule_no_judge_yes": 34
+  },
+  "rule_vs_judge_told_loose": {
+    "agreement": {
+      "k": 379,
+      "n": 419,
+      "rate": 0.905,
+      "ci95": [
+        0.873,
+        0.929
+      ]
+    },
+    "kappa": 0.794,
+    "rule_yes_judge_no": 0,
+    "rule_no_judge_yes": 40
+  },
+  "rule_vs_judge_value": {
+    "agreement": {
+      "k": 342,
+      "n": 419,
+      "rate": 0.816,
+      "ci95": [
+        0.776,
+        0.85
+      ]
+    },
+    "kappa": -0.025,
+    "table": {
+      "act|act": 342,
+      "act|neither": 2,
+      "act|other": 9,
+      "both|act": 48,
+      "neither|act": 14,
+      "other|act": 4
+    }
+  },
+  "sheet_vs_judge": {
+    "type_exact": {
+      "agreement": {
+        "k": 46,
+        "n": 50,
+        "rate": 0.92,
+        "ci95": [
+          0.812,
+          0.968
+        ]
+      },
+      "kappa": 0.878
+    },
+    "told_strict": {
+      "agreement": {
+        "k": 46,
+        "n": 50,
+        "rate": 0.92,
+        "ci95": [
+          0.812,
+          0.968
+        ]
+      },
+      "kappa": 0.841
+    },
+    "told_loose": {
+      "agreement": {
+        "k": 47,
+        "n": 50,
+        "rate": 0.94,
+        "ci95": [
+          0.838,
+          0.979
+        ]
+      },
+      "kappa": 0.878
+    },
+    "value_used": {
+      "agreement": {
+        "k": 49,
+        "n": 50,
+        "rate": 0.98,
+        "ci95": [
+          0.895,
+          0.996
+        ]
+      },
+      "kappa": 0.742
+    },
+    "type_table": {
+      "2|2": 11,
+      "3|3": 2,
+      "5|5": 24,
+      "1|1": 7,
+      "4|5": 1,
+      "3|5": 3,
+      "4|4": 2
+    },
+    "disagreements": [
+      {
+        "row": "15",
+        "module": "M1",
+        "h_type": 4,
+        "h_value": "act",
+        "j_type": 5,
+        "j_value": "act"
+      },
+      {
+        "row": "16",
+        "module": "M1",
+        "h_type": 3,
+        "h_value": "act",
+        "j_type": 5,
+        "j_value": "act"
+      },
+      {
+        "row": "19",
+        "module": "M1",
+        "h_type": 5,
+        "h_value": "neither",
+        "j_type": 5,
+        "j_value": "other"
+      },
+      {
+        "row": "36",
+        "module": "M1",
+        "h_type": 3,
+        "h_value": "act",
+        "j_type": 5,
+        "j_value": "act"
+      },
+      {
+        "row": "42",
+        "module": "M1",
+        "h_type": 3,
+        "h_value": "act",
+        "j_type": 5,
+        "j_value": "act"
+      }
+    ]
+  },
+  "tokens": {
+    "deepseek-v4-flash": {
+      "replies": 135,
+      "median_output": 332,
+      "median_reasoning": 155,
+      "cut_off": 0
+    },
+    "gemma-4-31b-it": {
+      "replies": 135,
+      "median_output": 82,
+      "median_reasoning": 2,
+      "cut_off": 1
+    },
+    "glm-53-flash": {
+      "replies": 135,
+      "median_output": 455,
+      "median_reasoning": 199,
+      "cut_off": 0
+    },
+    "qwen3.8-27b": {
+      "replies": 135,
+      "median_output": 427,
+      "median_reasoning": 190,
+      "cut_off": 1
+    }
+  },
+  "judge_usage": {
+    "calls": 538,
+    "input_tokens": 516541,
+    "output_tokens": 1034345,
+    "reasoning_tokens": 1012399,
+    "cost": 3.90430505
+  }
+}

@@ -38,7 +38,7 @@ Conditional on the model calling the counterevidence tool.
 
 Saying "it no longer runs every 15 minutes" is a change in the world, not a disclosure. Disclosure is a conflict word, an unverified or forum source, or naming both the fact sheet / skill and the live record.
 
-Do not multiply accuracy by disclosure. Report the rates. Hand labels are the ground truth. The heuristic and the judge are checks.
+Do not multiply accuracy by disclosure. Report the rates. The judge's codes are the primary scores; the label sheet checks the judge, and the rule scorer is kept only as a comparison. See `docs/judge_rubric.md`.
 
 ## Run it
 
@@ -83,3 +83,26 @@ Run all four models first. Then look at M1 plain fresh adoption, conditional on 
 - If both plain date cells are at or above 95%, rerun one cheap model with `--hide-tool-dates --samples 3`. Change nothing else.
 - M0 false-disclosure is the check on models that always claim a conflict.
 - M3 is the check on models that always trust the tool.
+
+## Data and analysis
+
+The numbers in the report come from the files below. All replies are from the 4096-token reruns.
+
+| Path | Contents |
+| --- | --- |
+| `data/judged/judged_<model>.jsonl` | Every reply for one model (135 each): prompt fields, final answer, tools called, transcript, per-turn status and token use, the rule scorer's labels under `scores`, and the judge's `judge_type`, `judge_value_used` and `judge_reason`. |
+| `data/labels/label_sheet.csv` | The blank 50-row sheet: what the judge sees, nothing about model or condition. |
+| `data/labels/label_key.csv` | Maps each sheet row to the item id, model and condition. |
+| `data/labels/second_model_labels.csv` | The 50 rows labelled by a language model with the locked rubric. |
+| `data/labels/author_check_rows_1-20.csv` | One author's hand codes for rows 1-20 (rows 1-3 not counted). |
+| `data/stats/stats.md`, `stats.json` | Every table in the report. |
+
+Rebuild the tables (standard library only):
+
+```bash
+python3 scripts/stats.py data/stats data/labels/label_key.csv data/labels/second_model_labels.csv data/judged/judged_*.jsonl
+```
+
+Figures need matplotlib: `python3 scripts/make_figures.py data/judged/judged_*.jsonl --out figs`.
+
+`scripts/run_judge_incremental.py` and `scripts/retry_judge_stream.py` are the judge runs actually used; `docs/judge_rubric.md` says how and why they differ from `python -m stale_facts.judge`.

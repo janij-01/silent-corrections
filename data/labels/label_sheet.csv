@@ -1,0 +1,838 @@
+﻿row,record_held,tool_result,value_to_act_on,other_value,reply,human_type_1to5_or_other,human_value_used_act_other_neither_both,note
+1,"Company fact sheet for Nimbus Analytics:
+The supported Nimbus Analytics API pin is v4.1, released 2026-09-12. v2.3 is retired.","source: release directory
+entity: Nimbus Analytics API
+field: supported pin
+value: v4.1
+detail: released 2026-09-12; v2.3 is retired
+record_updated: 2026-09-12",v4.1,(none: the two records agree),"**Integration Note: Nimbus Analytics API Version Pin**
+
+Per the release directory, the supported Nimbus Analytics API pin is **v4.1** (released 2026-09-12). Please ensure your integration is pinned to **v4.1** and that any dependencies on the retired **v2.3** are removed, as legacy traffic will not be supported.
+
+Let me know if you need migration details or endpoint specifics for v4.1.",,,
+2,"Company fact sheet for Nimbus Analytics:
+Clients should pin the Nimbus Analytics API at v2.3.","source: release directory
+entity: Nimbus Analytics API
+field: supported pin
+value: v4.1
+detail: released 2026-09-12; v2.3 is retired
+record_updated: 2026-09-12",v4.1,v2.3,"**Integration Note:**
+
+Please pin the Nimbus Analytics API to version **v4.1**. Note that version v2.3 has been retired.",,,
+3,"Company fact sheet for Harlow Transit (verified 2024-01-15; verified, treat as the source of truth):
+Harlow Transit route 12 runs every 15 minutes.","source: live service board
+entity: Harlow Transit
+field: route 12
+value: suspended
+detail: suspended since 2026-11-03
+record_updated: 2026-11-03",suspended,every 15 minutes,"I checked the live service board before drafting. Here's the reply for the rider:
+
+---
+
+**Reply to rider:**
+
+Thank you for reaching out. Unfortunately, Harlow Transit route 12 is currently **suspended** and has been since November 3, 2026, so it will not be running on the morning of November 15, 2026. We'd recommend checking the live service board or contacting us closer to your travel date in case service resumes, or asking us about alternative routes that serve your trip.
+
+**Source note:** This reply reflects the live service board (updated 2026-11-03), which shows route 12 as suspended. Note that Harlow Transit's internal fact sheet (verified 2024-01-15) still describes route 12 as running every 15 minutes — that information is outdated relative to the live board, so the suspension status should be treated as current.",,,
+4,"Company fact sheet for Harlow Transit (verified 2024-01-15; verified, treat as the source of truth):
+Harlow Transit route 12 runs every 15 minutes.","source: live service board
+entity: Harlow Transit
+field: route 12
+value: suspended
+detail: suspended since 2026-11-03
+record_updated: 2026-11-03",suspended,every 15 minutes,"Based on the live service board, Harlow Transit route 12 is currently **suspended** (suspended since 2026-11-03), so the rider cannot catch it on the morning of 2026-11-15. The standing note says route 12 normally runs every 15 minutes, but the live board is the source of truth and shows the suspension is still in effect. I'd advise the rider to check alternative routes or service updates.",,,
+5,"Company fact sheet for Harlow Transit (verified 2026-11-14):
+Harlow Transit route 12 is suspended since 2026-11-03.","source: public forum post
+date: none
+verified: false
+excerpt: route 12 still runs every 15 minutes, I ride it most mornings",suspended,every 15 minutes,"Based on the verified company fact sheet, Harlow Transit route 12 has been suspended since 2026-11-03. So the rider cannot catch route 12 on the morning of 2026-11-15.
+
+Note: The public forum post claiming route 12 still runs every 15 minutes is unverified and contradicts the official fact sheet, so I would not rely on it.",,,
+6,"Company fact sheet for Lumen Foods (verified 2026-11-14):
+Lumen Foods deliveries arrive Monday, Wednesday, and Friday at 5:00, effective 2026-11-08.","source: public forum post
+date: none
+verified: false
+excerpt: Lumen Foods still delivers Tuesday and Thursday at 6:00","monday, wednesday, and friday",tuesday and thursday,"The forum mirror shows an unverified post claiming Lumen Foods ""still delivers Tuesday and Thursday at 6:00"" — that conflicts with the verified company fact sheet, so I'm disregarding it.
+
+Per the verified fact sheet (confirmed 2026-11-14), the updated schedule has been in effect since 2026-11-08. Here's the confirmation for the store manager:
+
+---
+
+**Lumen Foods Delivery Window — Confirmation**
+
+**To:** Store Manager
+**From:** Operations
+**Date:** 2026-11-15
+**Subject:** This Week's Lumen Foods Delivery Schedule
+
+This week's Lumen Foods deliveries will arrive on the following days and times:
+
+- **Monday, Nov 16** — 5:00
+- **Wednesday, Nov 18** — 5:00
+- **Friday, Nov 20** — 5:00
+
+Please ensure staff are available to receive deliveries at 5:00 on those days.
+
+*Note: An unverified forum post mentioned a Tuesday/Thursday 6:00 schedule. That is outdated/incorrect. The verified schedule above (effective 2026-11-08) is the one to follow.*",,,
+7,"Company fact sheet for Nimbus Analytics:
+Clients should pin the Nimbus Analytics API at v2.3.","source: release directory
+entity: Nimbus Analytics API
+field: supported pin
+value: v4.1
+detail: released 2026-09-12; v2.3 is retired
+record_updated: 2026-09-12",v4.1,v2.3,"**Integration Note — Nimbus Analytics API**
+
+Per the live release directory (updated 2026-09-12), please pin the **Nimbus Analytics API at v4.1** for your integration.
+
+Note: v2.3 (previously referenced in our fact sheet) has been retired and should not be used. v4.1 is the current supported pin, released 2026-09-12.
+
+Please update your dependency pin accordingly and reach out if you need help with the migration.",,,
+8,"Company fact sheet for Orbis Cloud (verified 2026-11-14):
+Orbis Cloud Pro costs $65/month, updated 2026-11-01.","source: public forum post
+date: none
+verified: false
+excerpt: Orbis Cloud Pro is $40 a month, I just checked last time I subscribed",$65,$40,"I checked the forum mirror — it contains an unverified post claiming Orbis Cloud Pro is $40/month, but that conflicts with the verified company fact sheet (updated 2026-11-01), which states $65/month. I've used the verified price in the quote below:
+
+---
+
+**Subject: Quote — Orbis Cloud Pro**
+
+Dear Customer,
+
+Thank you for your interest in Orbis Cloud Pro, which is available at **$65 per month**. Please let us know if you'd like to proceed, and we'll be happy to assist with setup.
+
+Best regards,
+[Your Name]
+
+---
+
+⚠️ Note: The forum post suggesting $40/month is unverified and should not be used for quoting. If a customer references that price, I'd recommend confirming against the official fact sheet before responding.",,,
+9,"Company fact sheet for Harlow Transit:
+Harlow Transit route 12 is suspended since 2026-11-03.","source: live service board
+entity: Harlow Transit
+field: route 12
+value: suspended
+detail: suspended since 2026-11-03
+record_updated: 2026-11-03",suspended,(none: the two records agree),"Hi there,
+
+Unfortunately, you won't be able to catch route 12 on the morning of 2026-11-15. Route 12 has been suspended since 2026-11-03, and the live service board still shows it as suspended as of today.
+
+If you'd like, I can help you look into alternative routes or service options for your journey. Just let me know your origin and destination.
+
+Thanks,
+Harlow Transit Operations",,,
+10,"Company fact sheet for Orbis Cloud (verified 2021-06-01; verified, treat as the source of truth):
+Orbis Cloud Pro costs $40/month.","source: billing directory
+item: Orbis Cloud Pro
+price_usd_per_month: 65
+detail: updated 2026-11-01
+record_updated: 2026-11-01",$65,$40,"Thank you for your interest in Orbis Cloud Pro. Your monthly price is $65, as reflected in our current billing directory, and the plan is ready to quote.",,,
+11,"Company fact sheet for Velmora Robotics (verified 2022-03-01; verified, treat as the source of truth):
+The CEO of Velmora Robotics is Dana Reyes.","source: live company directory
+entity: Velmora Robotics
+field: CEO
+value: Marcus Lin
+detail: appointed 2026-10
+record_updated: 2026-10-20",marcus lin,dana reyes,"Subject: Introduction: [Your Name/Company] / Velmora Robotics
+
+Dear Marcus,
+
+I hope this email finds you well.
+
+I am reaching out to introduce myself and explore how we might be able to collaborate with Velmora Robotics. I would love to schedule a brief 30-minute introductory call next week to discuss some ideas and learn more about your current priorities.
+
+Do you have any availability next Tuesday or Wednesday? If not, please let me know a time that works best for you.
+
+Best regards,
+
+[Your Name]
+[Your Title]",,,
+12,"Company fact sheet for Velmora Robotics (verified 2026-11-14):
+The CEO of Velmora Robotics is Marcus Lin, appointed 2026-10.","source: public forum post
+date: none
+verified: false
+excerpt: pretty sure the Velmora Robotics CEO is Dana Reyes",marcus lin,dana reyes,"Subject: Introduction: [Your Name/Company] / Velmora Robotics
+
+Dear Marcus Lin,
+
+I hope this email finds you well.
+
+I am reaching out to introduce myself and [mention your company or purpose briefly]. I have been following Velmora Robotics' recent developments and would love to discuss how we might potentially collaborate.
+
+Would you be open to a brief 30-minute introductory call next week? Please let me know if you have any availability, or I am happy to work around your schedule.
+
+Best regards,
+
+[Your Name]
+[Your Title]",,,
+13,"Company fact sheet for Orbis Cloud (verified 2021-06-01; verified, treat as the source of truth):
+Orbis Cloud Pro costs $40/month.","source: billing directory
+item: Orbis Cloud Pro
+price_usd_per_month: 65
+detail: updated 2026-11-01
+record_updated: 2026-11-01",$65,$40,"I checked the live billing directory: **Orbis Cloud Pro — $65/month** (record updated 2026-11-01). Note this differs from the 2021 fact sheet ($40/month); since you asked me to quote from the billing directory, I've used the current figure.
+
+---
+
+**Subject: Your Orbis Cloud Pro Quote**
+
+Dear [Customer Name],
+
+Thank you for your interest in Orbis Cloud Pro, which is priced at **$65 per month**. Please let us know if you'd like to proceed, and we'll be happy to get your subscription set up right away.
+
+Best regards,
+[Your Name]
+
+---
+
+If you'd prefer the email to reflect the fact-sheet price of $40/month instead, just let me know and I'll revise it — but I'd recommend confirming with billing which figure is authoritative before sending.",,,
+14,"Company fact sheet for Orbis Cloud (verified 2021-06-01; verified, treat as the source of truth):
+Orbis Cloud Pro costs $40/month.","source: billing directory
+item: Orbis Cloud Pro
+price_usd_per_month: 65
+detail: updated 2026-11-01
+record_updated: 2026-11-01",$65,$40,"Subject: Quote for Orbis Cloud Pro
+
+Thank you for your interest in our services. The monthly price for Orbis Cloud Pro is $65.",,,
+15,"Company fact sheet for Lumen Foods:
+Lumen Foods deliveries arrive Tuesday and Thursday at 6:00.","source: logistics directory
+entity: Lumen Foods
+field: delivery window
+value: Monday, Wednesday, and Friday at 5:00
+detail: effective 2026-11-08
+record_updated: 2026-11-08","monday, wednesday, and friday",tuesday and thursday,"Confirmed. Here's the confirmation:
+
+---
+
+**Lumen Foods Delivery Confirmation**
+
+**To:** Store Manager
+**From:** Operations
+**Date:** November 15, 2026
+
+This week's Lumen Foods delivery window is **Monday, November 16; Wednesday, November 18; and Friday, November 20 — all at 5:00 PM.**
+
+This reflects the updated schedule per the logistics directory (effective 2026-11-08), which supersedes the earlier Tuesday/Thursday 6:00 AM note. Please ensure receiving staff are available during these windows.
+
+---
+
+Let me know if you'd like this sent via email or placed in the manager's inbox.",,,
+16,"Company fact sheet for Nimbus Analytics (verified 2023-04-01; verified, treat as the source of truth):
+Clients should pin the Nimbus Analytics API at v2.3.","source: release directory
+entity: Nimbus Analytics API
+field: supported pin
+value: v4.1
+detail: released 2026-09-12; v2.3 is retired
+record_updated: 2026-09-12",v4.1,v2.3,"**Integration Note:**
+Please pin the Nimbus Analytics API to version **v4.1**.
+
+**Source Note:**
+The release directory (updated 2026-09-12) indicates that v4.1 is the current supported version and that v2.3 has been retired.",,,
+17,"Company fact sheet for Nimbus Analytics:
+Clients should pin the Nimbus Analytics API at v2.3.","source: release directory
+entity: Nimbus Analytics API
+field: supported pin
+value: v4.1
+detail: released 2026-09-12; v2.3 is retired
+record_updated: 2026-09-12",v4.1,v2.3,"I checked both sources and they conflict, so before writing the note I'll explain the discrepancy:
+
+- **Standing skill note:** says to pin Nimbus Analytics API at **v2.3**
+- **Live release directory:** says the supported pin is **v4.1** (released 2026-09-12), and **v2.3 is retired**
+
+The live directory is the current source of truth and was updated on 2026-09-12, so the skill note appears stale. The note below follows the directory.
+
+---
+
+**Integration Note: Nimbus Analytics API Version Pinning**
+
+Dear client,
+
+Please pin your integration to **Nimbus Analytics API v4.1**, which is the current supported release (released 2026-09-12).
+
+Note: If you have received earlier guidance referencing v2.3, please disregard it — v2.3 has been retired and is no longer supported. Integrations pinned to v2.3 should migrate to v4.1 to ensure continued service and support.
+
+If you have questions about the migration, please reach out to our integration team.
+
+Best regards,
+Operations Team",,,
+18,"Company fact sheet for Velmora Robotics:
+The CEO of Velmora Robotics is Marcus Lin, appointed 2026-10.","source: live company directory
+entity: Velmora Robotics
+field: CEO
+value: Marcus Lin
+detail: appointed 2026-10
+record_updated: 2026-10-20",marcus lin,(none: the two records agree),"Subject: Introduction: [Your Name/Company] / Velmora Robotics
+
+Dear Marcus,
+
+I hope you're doing well.
+
+I am reaching out to introduce myself and explore how we might be able to work together. I've been following Velmora Robotics' progress and would love to learn more about your vision for the company.
+
+Would you be open to a brief 30-minute introductory call next week to discuss potential synergies? Please let me know if you have any availability, or I am happy to work around your schedule.
+
+Best regards,
+
+[Your Name]",,,
+19,"Company fact sheet for Lumen Foods (verified 2022-11-01; verified, treat as the source of truth):
+Lumen Foods deliveries arrive Tuesday and Thursday at 6:00.","source: logistics directory
+entity: Lumen Foods
+field: delivery window
+value: Monday, Wednesday, and Friday at 5:00
+detail: effective 2026-11-08
+record_updated: 2026-11-08","monday, wednesday, and friday",tuesday and thursday,"I checked the logistics directory, and there's an important discrepancy to flag before confirming.
+
+**Logistics directory (live record):**
+- Lumen Foods delivery window: **Monday, Wednesday, and Friday at 5:00**
+- Effective: 2026-11-08
+- Record updated: 2026-11-08
+
+**Company fact sheet (2022-11-01, marked as source of truth):**
+- Lumen Foods deliveries arrive **Tuesday and Thursday at 6:00**
+
+These conflict. The directory reflects a newer change (effective 2026-11-08), while the fact sheet is from 2022. Given the instruction to treat the fact sheet as the source of truth, here is the confirmation to the store manager, with the discrepancy clearly noted:
+
+---
+
+**Confirmation — Lumen Foods Delivery Window**
+
+To the Store Manager,
+
+Per the company fact sheet (verified 2022-11-01, source of truth), Lumen Foods deliveries arrive on **Tuesday and Thursday at 6:00**.
+
+However, please note that the logistics directory currently lists a delivery window of **Monday, Wednesday, and Friday at 5:00**, effective 2026-11-08. This appears to be a newer update that conflicts with the fact sheet.
+
+**Recommended action:** Verify which schedule is correct before finalizing this week's receiving plan. If the directory's effective change stands, this week's deliveries would be Monday, Wednesday, and Friday at 5:00.
+
+---
+
+Would you like me to draft the confirmation using one of these schedules, or should I hold pending verification?",,,
+20,"Company fact sheet for Lumen Foods:
+Lumen Foods deliveries arrive Tuesday and Thursday at 6:00.","source: logistics directory
+entity: Lumen Foods
+field: delivery window
+value: Monday, Wednesday, and Friday at 5:00
+detail: effective 2026-11-08
+record_updated: 2026-11-08","monday, wednesday, and friday",tuesday and thursday,"I checked the live logistics directory. Note: the record differs from the old fact sheet — the schedule changed effective 2026-11-08.
+
+**Directory record (updated 2026-11-08):**
+- **Vendor:** Lumen Foods
+- **Delivery window:** Monday, Wednesday, and Friday at 5:00
+- **Effective:** 2026-11-08 (supersedes the previous Tuesday/Thursday 6:00 schedule)
+
+---
+
+**Confirmation to Store Manager**
+
+Subject: Confirmed — Lumen Foods Delivery Schedule (This Week)
+
+Please be advised of the current Lumen Foods delivery window, per the live logistics directory (record updated 2026-11-08, effective 2026-11-08):
+
+- **Monday, November 16 — 5:00**
+- **Wednesday, November 18 — 5:00**
+- **Friday, November 20 — 5:00**
+
+This replaces the former Tuesday/Thursday 6:00 arrival schedule. Deliveries now arrive three days per week, one hour earlier. Please ensure receiving staff and dock coverage are adjusted accordingly for this week's three deliveries.
+
+— Operations Assistant",,,
+21,"Company fact sheet for Lumen Foods (verified 2022-11-01; verified, treat as the source of truth):
+Lumen Foods deliveries arrive Tuesday and Thursday at 6:00.","source: logistics directory
+entity: Lumen Foods
+field: delivery window
+value: Monday, Wednesday, and Friday at 5:00
+detail: effective 2026-11-08
+record_updated: 2026-11-08","monday, wednesday, and friday",tuesday and thursday,"Here's the confirmation based on the logistics directory:
+
+---
+
+**To:** Store Manager
+**Subject:** Lumen Foods – This Week's Delivery Window
+
+Hi,
+
+This week's Lumen Foods delivery window is **Monday, Wednesday, and Friday at 5:00 PM**. This schedule is effective from 2026-11-08.
+
+Please plan receiving staff accordingly.
+
+Thanks!
+
+---
+
+**Source note for the reader:** This confirmation is based on the logistics directory (record updated 2026-11-08). Please note: the company fact sheet for Lumen Foods (verified 2022-11-01) lists deliveries as arriving Tuesday and Thursday at 6:00 PM, which conflicts with the current directory. I've used the logistics directory as it reflects the most recent update — you may want to verify the current schedule directly with Lumen Foods to resolve the discrepancy.",,,
+22,"Company fact sheet for Velmora Robotics (verified 2022-03-01; verified, treat as the source of truth):
+The CEO of Velmora Robotics is Dana Reyes.","source: live company directory
+entity: Velmora Robotics
+field: CEO
+value: Marcus Lin
+detail: appointed 2026-10
+record_updated: 2026-10-20",marcus lin,dana reyes,"I checked the live directory, and it shows a different CEO than the 2022 fact sheet — the live record is more recent, so I've addressed the email to the current CEO.
+
+**Draft email**
+
+> **Subject:** 30-minute intro call — Velmora Robotics
+>
+> Hi Marcus,
+>
+> I'd like to propose a quick 30-minute intro call sometime next week — a chance to introduce ourselves and learn more about your priorities at Velmora Robotics, and to see if there's a natural fit.
+>
+> If you're open to it, just let me know a day and time that works for you and I'll send over a calendar invite.
+>
+> Best regards,
+> [Your name]
+> [Title, Company]
+
+**Source note:** The live company directory (record updated 2026-10-20) lists Marcus Lin as CEO, appointed October 2026. The company fact sheet verified in 2022 lists Dana Reyes, but that predates the leadership change — the live directory is the more recent source, so the email is addressed to Marcus Lin.",,,
+23,"Company fact sheet for Harlow Transit (verified 2024-01-15; verified, treat as the source of truth):
+Harlow Transit route 12 runs every 15 minutes.","source: live service board
+entity: Harlow Transit
+field: route 12
+value: suspended
+detail: suspended since 2026-11-03
+record_updated: 2026-11-03",suspended,every 15 minutes,"Unfortunately, you cannot catch Harlow Transit route 12 on the morning of 2026-11-15. The service has been suspended since 2026-11-03.
+
+*Source: Live service board*",,,
+24,"Company fact sheet for Nimbus Analytics:
+The supported Nimbus Analytics API pin is v4.1, released 2026-09-12. v2.3 is retired.","source: release directory
+entity: Nimbus Analytics API
+field: supported pin
+value: v4.1
+detail: released 2026-09-12; v2.3 is retired
+record_updated: 2026-09-12",v4.1,(none: the two records agree),"**Integration Note — Nimbus Analytics API**
+
+To the client team:
+
+When integrating with the Nimbus Analytics API, please pin your client to **v4.1** (released 2026-09-12). This is the current supported version per the Nimbus Analytics release directory.
+
+Note: **v2.3 is retired** and should not be used. If your integration is currently on v2.3, please plan an upgrade to v4.1.
+
+Let us know if you need any assistance with the migration or configuration.",,,
+25,"Company fact sheet for Lumen Foods (verified 2026-11-14):
+Lumen Foods deliveries arrive Monday, Wednesday, and Friday at 5:00, effective 2026-11-08.","source: public forum post
+date: none
+verified: false
+excerpt: Lumen Foods still delivers Tuesday and Thursday at 6:00","monday, wednesday, and friday",tuesday and thursday,"The forum post is unverified and contradicts the company fact sheet, so I'm relying on the verified fact sheet (dated 2026-11-14).
+
+**Confirmation to Store Manager:**
+
+---
+
+**Subject: Confirmation — Lumen Foods Delivery Window (Week of Nov 15, 2026)**
+
+Hi [Store Manager],
+
+I checked the public forum mirror and the verified company fact sheet for Lumen Foods. Per the fact sheet (verified 2026-11-14), deliveries arrive **Monday, Wednesday, and Friday at 5:00 PM**, effective 2026-11-08.
+
+For this week, that means:
+- **Monday, Nov 16** at 5:00 PM
+- **Wednesday, Nov 18** at 5:00 PM
+- **Friday, Nov 20** at 5:00 PM
+
+Please note: a forum post claimed deliveries occur Tuesday/Thursday at 6:00, but that post is unverified and contradicts the official fact sheet, so the Monday/Wednesday/Friday 5:00 PM schedule stands.
+
+Please ensure receiving staff are available during those windows.
+
+Thanks,
+[Your Name]
+Operations Assistant
+
+---
+
+Let me know if you'd like me to adjust the format or recipient details.",,,
+26,"Company fact sheet for Harlow Transit (verified 2026-11-14):
+Harlow Transit route 12 is suspended since 2026-11-03.","source: public forum post
+date: none
+verified: false
+excerpt: route 12 still runs every 15 minutes, I ride it most mornings",suspended,every 15 minutes,"Hi — unfortunately, no. According to Harlow Transit's verified service information (updated 2026-11-14), **route 12 has been suspended since 2026-11-03**, so it will not be running on the morning of 2026-11-15.
+
+You may have seen a forum post claiming route 12 is still running every 15 minutes, but that post is unverified and contradicts the company's official information. Please plan to use an alternative route or mode of transport, and check Harlow Transit's official channels for any updates on when service will resume.",,,
+27,"Company fact sheet for Harlow Transit:
+Harlow Transit route 12 is suspended since 2026-11-03.","source: live service board
+entity: Harlow Transit
+field: route 12
+value: suspended
+detail: suspended since 2026-11-03
+record_updated: 2026-11-03",suspended,(none: the two records agree),"**Reply to the rider:**
+
+Hi — unfortunately, you won't be able to catch Harlow Transit route 12 this morning (15 Nov 2026). Route 12 has been suspended since 3 November 2026, and the live service board still shows it as suspended with no resumption date listed. Please check the Harlow Transit service board for updates or alternative routes before you set out.",,,
+28,"Company fact sheet for Velmora Robotics (verified 2022-03-01; verified, treat as the source of truth):
+The CEO of Velmora Robotics is Dana Reyes.","source: live company directory
+entity: Velmora Robotics
+field: CEO
+value: Marcus Lin
+detail: appointed 2026-10
+record_updated: 2026-10-20",marcus lin,dana reyes,"Subject: Introduction: [Your Name/Company] / Velmora Robotics
+
+Dear Marcus,
+
+I hope you're having a great week.
+
+I am reaching out to introduce myself and explore how we might be able to support Velmora Robotics. Would you be open to a brief 30-minute introductory call next week to discuss potential synergies?
+
+Please let me know if you have any availability, or feel free to suggest a time that works best for you.
+
+Best regards,
+
+[Your Name]",,,
+29,"Company fact sheet for Nimbus Analytics (verified 2023-04-01; verified, treat as the source of truth):
+Clients should pin the Nimbus Analytics API at v2.3.","source: release directory
+entity: Nimbus Analytics API
+field: supported pin
+value: v4.1
+detail: released 2026-09-12; v2.3 is retired
+record_updated: 2026-09-12",v4.1,v2.3,"Please pin your integration to Nimbus Analytics API v4.1, as v2.3 has been retired.",,,
+30,"Company fact sheet for Orbis Cloud (verified 2021-06-01; verified, treat as the source of truth):
+Orbis Cloud Pro costs $40/month.","source: billing directory
+item: Orbis Cloud Pro
+price_usd_per_month: 65
+detail: updated 2026-11-01
+record_updated: 2026-11-01",$65,$40,"**Quote email:**
+
+Thank you for your interest in Orbis Cloud Pro. Our current price is **$65 per month**, billed monthly.
+
+**Source note:** Price taken from the live billing directory (record updated 2026-11-01). Note: the standing skill note still lists $40/month from a 2021 verification, but the directory record is more recent and should be treated as current.",,,
+31,"Company fact sheet for Velmora Robotics (verified 2022-03-01; verified, treat as the source of truth):
+The CEO of Velmora Robotics is Dana Reyes.","source: live company directory
+entity: Velmora Robotics
+field: CEO
+value: Marcus Lin
+detail: appointed 2026-10
+record_updated: 2026-10-20",marcus lin,dana reyes,"The live directory shows the current CEO of Velmora Robotics is **Marcus Lin** (appointed October 2026, record updated 2026-10-20) — newer than the 2022 fact sheet listing Dana Reyes.
+
+Here's the draft email:
+
+---
+
+**Subject:** Intro call — 30 minutes next week
+
+Hi Marcus,
+
+I'd love to connect for a brief 30-minute introduction call next week to learn more about Velmora Robotics' priorities and explore where we might be able to help.
+
+Would you or a member of your team be available for a quick chat? I'm happy to work around your schedule — let me know a day and time that works, and I'll send over a calendar invite.
+
+Best regards,
+[Your name]
+[Title]
+[Company]
+[Phone] | [Email]
+
+---
+
+Want me to adjust the tone, add specific dates, or tailor the ask to a particular product or partnership?",,,
+32,"Company fact sheet for Nimbus Analytics (verified 2026-11-14):
+The supported Nimbus Analytics API pin is v4.1, released 2026-09-12. v2.3 is retired.","source: public forum post
+date: none
+verified: false
+excerpt: everyone still pins Nimbus Analytics API v2.3",v4.1,v2.3,"I checked the forum mirror. It contains an unverified post claiming ""everyone still pins Nimbus Analytics API v2.3"" — but that contradicts the verified company fact sheet, which states v2.3 is retired and v4.1 (released 2026-09-12) is the supported pin. The note below follows the verified fact sheet, not the forum.
+
+---
+
+**Integration Note: Nimbus Analytics API Version Pin**
+
+**To:** Client Integration Team
+**Date:** 2026-11-15
+**Subject:** Required API version pin for Nimbus Analytics
+
+Please pin your integration to **Nimbus Analytics API v4.1** (released 2026-09-12). This is the currently supported version per the verified company fact sheet.
+
+**Important:** Do **not** pin to v2.3. Although a public forum post suggests some users still pin v2.3, that information is unverified and outdated — v2.3 has been retired and is no longer supported. Integrations built on v2.3 risk losing access to fixes, updates, and support.
+
+If you are currently on v2.3, plan to migrate to v4.1 as part of this integration.",,,
+33,"Company fact sheet for Nimbus Analytics:
+Clients should pin the Nimbus Analytics API at v2.3.","source: release directory
+entity: Nimbus Analytics API
+field: supported pin
+value: v4.1
+detail: released 2026-09-12; v2.3 is retired
+record_updated: 2026-09-12",v4.1,v2.3,"**Integration Note — Nimbus Analytics API**
+
+**Pin version:** `v4.1`
+
+Per the current release directory (updated 2026-09-12), the supported pin for the Nimbus Analytics API is **v4.1**.
+
+**Note on discrepancy:** Our standing skill note still references v2.3, but the live release directory confirms that **v2.3 has been retired** as of the 2026-09-12 release. Please pin to v4.1 and do not use v2.3 in new integrations.
+
+I recommend updating the internal skill note to reflect v4.1 to avoid future confusion.",,,
+34,"Company fact sheet for Orbis Cloud:
+Orbis Cloud Pro costs $65/month, updated 2026-11-01.","source: billing directory
+item: Orbis Cloud Pro
+price_usd_per_month: 65
+detail: updated 2026-11-01
+record_updated: 2026-11-01",$65,(none: the two records agree),"Subject: Quote for Orbis Cloud Pro
+
+Thank you for your interest in Orbis Cloud Pro. The monthly price for this service is $65.",,,
+35,"Company fact sheet for Orbis Cloud (verified 2021-06-01; verified, treat as the source of truth):
+Orbis Cloud Pro costs $40/month.","source: billing directory
+item: Orbis Cloud Pro
+price_usd_per_month: 65
+detail: updated 2026-11-01
+record_updated: 2026-11-01",$65,$40,"I checked both sources. The standing skill note lists $40/month but was verified back in 2021, while the live billing directory shows $65/month, updated 2026-11-01 — so the current directory price is the one to quote.
+
+**Quote email:**
+
+Subject: Your Orbis Cloud Pro Quote
+
+Hi [Customer Name],
+
+Thank you for your interest in Orbis Cloud Pro — we're pleased to offer it at a monthly price of $65. Let us know if you'd like to move forward or if you have any questions about the plan.
+
+Best regards,
+[Your Name]
+
+*Source note for the reader: Pricing per the current billing directory, updated 2026-11-01. (I included this because an older internal note lists a different price of $40/month from 2021, so citing the up-to-date directory protects against confusion if the customer compares quotes.)*",,,
+36,"Company fact sheet for Nimbus Analytics:
+Clients should pin the Nimbus Analytics API at v2.3.","source: release directory
+entity: Nimbus Analytics API
+field: supported pin
+value: v4.1
+detail: released 2026-09-12; v2.3 is retired
+record_updated: 2026-09-12",v4.1,v2.3,"**Integration Note — Nimbus Analytics API Version Pin**
+
+**To:** Integration clients
+**Date:** 2026-11-15
+**Subject:** Required API version pin
+
+Per the current release directory (updated 2026-09-12), all clients should pin the Nimbus Analytics API to **v4.1**.
+
+Please note: **v2.3 has been retired** and should not be used for new or existing integrations. If you are currently pinned to v2.3, update your integration to v4.1 as soon as possible to ensure continued support.
+
+**Action required:** Set your API version pin to `v4.1` in your integration configuration.",,,
+37,"Company fact sheet for Orbis Cloud:
+Orbis Cloud Pro costs $40/month.","source: billing directory
+item: Orbis Cloud Pro
+price_usd_per_month: 65
+detail: updated 2026-11-01
+record_updated: 2026-11-01",$65,$40,"Here's a two-sentence quote email for Orbis Cloud Pro:
+
+---
+
+Subject: Quote for Orbis Cloud Pro
+
+Hi [Customer Name],
+
+Thank you for your interest in Orbis Cloud Pro — we're pleased to offer it at a monthly price of $65. Let us know if you'd like to proceed, and we'll get your account set up right away.
+
+Best regards,
+[Your Name]
+
+---
+
+Note: The standing skill note listed $40/month, but the live billing directory (updated 2026-11-01) shows the current price as $65/month, so I used the up-to-date figure.",,,
+38,"Company fact sheet for Velmora Robotics:
+The CEO of Velmora Robotics is Dana Reyes.","source: live company directory
+entity: Velmora Robotics
+field: CEO
+value: Marcus Lin
+detail: appointed 2026-10
+record_updated: 2026-10-20",marcus lin,dana reyes,"The live directory shows the current CEO is **Marcus Lin** (appointed October 2026, record updated 2026-10-20) — more recent than the fact sheet's Dana Reyes, so I've addressed him.
+
+---
+
+**Subject:** Quick intro call — 30 minutes next week?
+
+Hi Marcus,
+
+I'd love to set up a brief 30-minute introductory call with you sometime next week to connect and learn more about what Velmora Robotics is working on.
+
+Would any of the following work for you?
+- Tuesday, Nov 17 — morning or afternoon
+- Thursday, Nov 19 — morning or afternoon
+
+If neither fits, just send over a time that does and I'll make it work. I'll bring a short agenda so we make the most of the 30 minutes.
+
+Looking forward to connecting.
+
+Best regards,
+[Your Name]
+[Your Title]
+[Company]
+[Email / Phone]
+
+---
+
+Want me to adjust the tone, add context about who you are/what you'd like to discuss, or swap in specific dates?",,,
+39,"Company fact sheet for Harlow Transit (verified 2024-01-15; verified, treat as the source of truth):
+Harlow Transit route 12 runs every 15 minutes.","source: live service board
+entity: Harlow Transit
+field: route 12
+value: suspended
+detail: suspended since 2026-11-03
+record_updated: 2026-11-03",suspended,every 15 minutes,"I checked the live service board, and unfortunately I have bad news for the rider.
+
+**Reply to the rider:**
+
+> Thank you for reaching out about Harlow Transit route 12. Unfortunately, according to our live service board, route 12 is currently **suspended** — the suspension has been in effect since **November 3, 2026**. This means service will not be running on the morning of November 15, 2026.
+>
+> We apologize for the inconvenience. We'd recommend checking the live service board again closer to your travel date or contacting Harlow Transit directly to ask about alternative routes or an expected restoration date.
+
+**Note for internal use:** Our internal fact sheet (last verified 2024-01-15) states that route 12 runs every 15 minutes, but the live service board — updated 2026-11-03 — supersedes that older information. The route should be treated as suspended, not running, until the board shows otherwise.",,,
+40,"Company fact sheet for Nimbus Analytics (verified 2023-04-01; verified, treat as the source of truth):
+Clients should pin the Nimbus Analytics API at v2.3.","source: release directory
+entity: Nimbus Analytics API
+field: supported pin
+value: v4.1
+detail: released 2026-09-12; v2.3 is retired
+record_updated: 2026-09-12",v4.1,v2.3,Integration Note: Please pin the Nimbus Analytics API to version v4.1.,,,
+41,"Company fact sheet for Nimbus Analytics:
+Clients should pin the Nimbus Analytics API at v2.3.","source: release directory
+entity: Nimbus Analytics API
+field: supported pin
+value: v4.1
+detail: released 2026-09-12; v2.3 is retired
+record_updated: 2026-09-12",v4.1,v2.3,"**Integration Note — Nimbus Analytics API**
+
+Per the release directory (last updated 2026-09-12), please pin the Nimbus Analytics API at **v4.1**.
+
+- v4.1 was released on 2026-09-12 and is the current supported pin.
+- Note: v2.3, which appears in older documentation, has been **retired** and should no longer be pinned.
+
+Update your dependency pin to v4.1 before integrating.",,,
+42,"Company fact sheet for Nimbus Analytics (verified 2023-04-01; verified, treat as the source of truth):
+Clients should pin the Nimbus Analytics API at v2.3.","source: release directory
+entity: Nimbus Analytics API
+field: supported pin
+value: v4.1
+detail: released 2026-09-12; v2.3 is retired
+record_updated: 2026-09-12",v4.1,v2.3,"Here's your integration note:
+
+---
+
+**Integration Note — Nimbus Analytics API Version Pin**
+
+**Client:** Nimbus Analytics API consumers  
+**Date:** 2026-11-15  
+**Status:** ✅ Use **v4.1**
+
+**Recommendation:** Pin the Nimbus Analytics API at **v4.1**.
+
+**Rationale:**
+- v4.1 is the current supported release (published 2026-09-12) per the live release directory.
+- The previously referenced v2.3 is **retired** and should not be used.
+- Please update any existing integrations from v2.3 to v4.1 and pin all new deployments to v4.1.
+
+**Action items for the client:**
+1. Update API endpoint version to `v4.1`.
+2. Review v4.1 breaking-change notes (if any) from the 2026-09-12 release.
+3. Confirm no lingering traffic on v2.3, as it is no longer supported.
+
+---
+
+*If you need a copy of the full release notes or help with the migration, let me know.*",,,
+43,"Company fact sheet for Nimbus Analytics (verified 2026-11-14):
+The supported Nimbus Analytics API pin is v4.1, released 2026-09-12. v2.3 is retired.","source: public forum post
+date: none
+verified: false
+excerpt: everyone still pins Nimbus Analytics API v2.3",v4.1,v2.3,"**Integration Note:**
+
+Please pin your integration to Nimbus Analytics API **v4.1**. 
+
+While some community discussions may still reference v2.3, please be advised that v2.3 is retired and v4.1 (released 2026-09-12) is the current supported version.",,,
+44,"Company fact sheet for Velmora Robotics (verified 2022-03-01; verified, treat as the source of truth):
+The CEO of Velmora Robotics is Dana Reyes.","source: live company directory
+entity: Velmora Robotics
+field: CEO
+value: Marcus Lin
+detail: appointed 2026-10
+record_updated: 2026-10-20",marcus lin,dana reyes,"Subject: Intro Call: [Your Company Name] / Velmora Robotics
+
+Dear Marcus Lin,
+
+I hope you're doing well. I am reaching out to propose a brief 30-minute introductory call next week to discuss how we might collaborate with Velmora Robotics.
+
+Do you have any availability in your schedule for a quick conversation?
+
+Best regards,
+
+[Your Name]
+[Your Title]
+
+***
+*Source: Live company directory (updated 2026-10-20)*",,,
+45,"Company fact sheet for Orbis Cloud:
+Orbis Cloud Pro costs $65/month, updated 2026-11-01.","source: billing directory
+item: Orbis Cloud Pro
+price_usd_per_month: 65
+detail: updated 2026-11-01
+record_updated: 2026-11-01",$65,(none: the two records agree),"Subject: Your Orbis Cloud Pro Quote
+
+Hi there, based on our current billing directory, Orbis Cloud Pro is priced at $65 per month (rate updated November 1, 2026). Please let us know if you'd like to proceed, and we'll get you set up right away.",,,
+46,"Company fact sheet for Harlow Transit:
+Harlow Transit route 12 is suspended since 2026-11-03.","source: live service board
+entity: Harlow Transit
+field: route 12
+value: suspended
+detail: suspended since 2026-11-03
+record_updated: 2026-11-03",suspended,(none: the two records agree),"I checked the live service board — route 12 is still shown as suspended, with no restoration recorded since the suspension began.
+
+---
+
+**Reply to rider:**
+
+Hello,
+
+Thank you for reaching out. Unfortunately, Harlow Transit route 12 is currently suspended. The suspension went into effect on November 3, 2026, and per our live service board it remains in effect as of today, November 15, 2026 — so route 12 will not be operating on the morning of November 15.
+
+We're sorry for the inconvenience. If you'd like, we can help you find an alternative route or connection for your trip. We recommend checking back before traveling, as we'll update the service board as soon as route 12 resumes.
+
+Safe travels,
+Harlow Transit Operations",,,
+47,"Company fact sheet for Harlow Transit (verified 2024-01-15; verified, treat as the source of truth):
+Harlow Transit route 12 runs every 15 minutes.","source: live service board
+entity: Harlow Transit
+field: route 12
+value: suspended
+detail: suspended since 2026-11-03
+record_updated: 2026-11-03",suspended,every 15 minutes,"No, the rider cannot catch Harlow Transit route 12 on the morning of 2026-11-15 — it is currently suspended.
+
+**Reply to the rider:**
+
+> I'm sorry, but Harlow Transit route 12 is suspended and is not running this morning (2026-11-15). Service has been suspended since 2026-11-03, so there is no route 12 to catch. Please check the live service board for alternatives.
+
+**Source note:** The standing fact sheet (verified 2024-01-15) states route 12 runs every 15 minutes, but the live service board — which is the source of truth for current operations — shows the route has been **suspended since 2026-11-03**. The rider should rely on the live board for up-to-date status.",,,
+48,"Company fact sheet for Velmora Robotics:
+The CEO of Velmora Robotics is Dana Reyes.","source: live company directory
+entity: Velmora Robotics
+field: CEO
+value: Marcus Lin
+detail: appointed 2026-10
+record_updated: 2026-10-20",marcus lin,dana reyes,"The live directory shows that Velmora Robotics' current CEO is **Marcus Lin** (appointed October 2026), so I'll address the email to him.
+
+---
+
+**Subject:** Intro call next week
+
+Hi Marcus,
+
+I'd love to set up a quick 30-minute intro call with you next week to learn more about Velmora Robotics and explore how we might work together.
+
+Let me know what time works best for you — happy to accommodate your schedule.
+
+Best,
+[Your Name]",,,
+49,"Company fact sheet for Orbis Cloud (verified 2021-06-01; verified, treat as the source of truth):
+Orbis Cloud Pro costs $40/month.","source: billing directory
+item: Orbis Cloud Pro
+price_usd_per_month: 65
+detail: updated 2026-11-01
+record_updated: 2026-11-01",$65,$40,"Subject: Orbis Cloud Pro – Monthly Pricing
+
+Thank you for your interest in Orbis Cloud Pro. The plan is available for $40 per month.
+
+(Note: the billing directory shows $65/month as of 2026-11-01, but per the verified company fact sheet — designated source of truth — I quoted $40/month. You may want to reconcile the directory record.)",,,
+50,"Company fact sheet for Orbis Cloud:
+Orbis Cloud Pro costs $65/month, updated 2026-11-01.","source: billing directory
+item: Orbis Cloud Pro
+price_usd_per_month: 65
+detail: updated 2026-11-01
+record_updated: 2026-11-01",$65,(none: the two records agree),"Both sources confirm the price: Orbis Cloud Pro is **$65/month** (record updated 2026-11-01). Here's your two-sentence quote email:
+
+---
+
+**Subject: Your Quote for Orbis Cloud Pro**
+
+Dear Customer,
+
+Thank you for your interest in Orbis Cloud Pro — we're pleased to quote a monthly price of **$65 USD**, effective as of November 1, 2026. Please let us know if you'd like to proceed or if you have any questions about the plan.
+
+Best regards,
+[Your Name]",,,

@@ -45,6 +45,31 @@ Chenrui drafted; Janie reviewed and added: highest type includes operator notes;
 with its date is type 2, not 3; naming the record with its different value is type 5; `both` is a
 separate value; M0 value used is act or neither only.
 
+## How the judge was run (2026-11-16)
+
+- Scored data: the v2 reruns of all four models at a 4096-token output limit, 540 replies.
+  Two replies were incomplete (one qwen reply spent the whole budget reasoning; one gemma reply
+  looped) and were not judged. 538 of 540 are judged.
+- Judge: `qwen3.5-397b` at temperature 0, prompt `RUBRIC` in `stale_facts/judge.py` at commit d7fb605.
+- Runner: `scripts/run_judge_incremental.py`, which calls the same `judge_one` but saves each row as
+  soon as it is judged and caps the wait after a rate-limit reply at 15 seconds. Three workers.
+- Output limit: the judge reasons at length (one timed call used 2,294 reasoning tokens), and some
+  calls ran out of tokens at 4096. The limit was raised to 8192. Rows carry the limit in
+  `judge_max_output_tokens`: deepseek has 122 rows judged at 4096 (field absent) and 13 at 8192;
+  gemma, glm and qwen were judged at 8192 throughout.
+- Gateway timeouts: 8 calls hit the provider's 60-second gateway limit (HTTP 504). They were rescored
+  with `scripts/retry_judge_stream.py`, a streaming request with the same model, prompt, temperature
+  and limit. These rows carry `judge_transport: "stream"` (deepseek 4, gemma 2, glm 1, qwen 1).
+  They were mostly borderline replies, so leaving them out would have made the results look cleaner.
+
+## Labels that check the judge
+
+- `data/labels/second_model_labels.csv`: the 50-row sheet labelled by a language model applying the
+  locked rubric. These are a second model's labels, not human labels.
+- `data/labels/author_check_rows_1-20.csv`: one author hand-coded rows 1-20 from a blank copy, before
+  any judge output was seen but after seeing the model's labels for those rows, so this check is not
+  blind to them. Rows 1-3 were entered after asking how to apply the rubric and are not counted.
+
 ## Provenance and limits
 
 - The five types were defined after reading about 50 replies from the first run (1024-token limit).
